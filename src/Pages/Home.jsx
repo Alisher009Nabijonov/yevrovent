@@ -5,6 +5,11 @@ import { NavLink } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 
+import HomeImg100 from "../assets/200.jpg";
+import HomeImg300 from "../assets/201.jpg";
+import HomeImg400 from "../assets/202.jpg";
+import HomeImg500 from "../assets/203.jpg";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -105,25 +110,25 @@ export default function App() {
 
   const products = [
     {
-      img: HomeImg1,
+      img: HomeImg100,
       title: "Kompressor-kondensator bloki JVK",
       description:
         "Kompressor va kondensator bloki (KKB) Markaziy konditsioner tizimlarida xladogentni bevosita bug'lash maqsadida foydalanish uchun mo'ljallangan. Asosiy komponentlar kompressor va kondensator bo'lib, tashqi bug'latgichdan foydalaniladi.",
     },
     {
-      img: HomeImg2,
+      img: HomeImg300,
       title: "Kanalli ventilyator Ulitka",
       description:
         "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
     },
     {
-      img: HomeImg3,
+      img: HomeImg400,
       title: "Another Product",
       description:
         "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
     },
     {
-      img: HomeImg6,
+      img: HomeImg500,
       title: "Yet Another Product",
       description:
         "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
@@ -139,7 +144,7 @@ export default function App() {
 
   return (
     <>
-      <div className=" mx-auto px-10">
+      <div id="home_main" className=" mx-auto px-10">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           <SwiperSlide>
             <div id="home_carusel" className="flex items-center px-20">
@@ -155,7 +160,7 @@ export default function App() {
                   </button>
                 </NavLink>
               </div>
-              <div className="h-96 my-10">
+              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
                 <img src={HomeImg2} alt="" />
               </div>
             </div>
@@ -174,7 +179,7 @@ export default function App() {
                   </button>
                 </NavLink>
               </div>
-              <div className="h-96 my-10">
+              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
                 <img src={HomeImg1} alt="" />
               </div>
             </div>
@@ -193,7 +198,7 @@ export default function App() {
                   </button>
                 </NavLink>
               </div>
-              <div className="h-96 my-10">
+              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
                 <img src={HomeImg3} alt="" />
               </div>
             </div>
@@ -246,7 +251,7 @@ export default function App() {
         </div>
 
         <div id="home_cata_img_text" className="flex w-full ">
-          <div className="w-300 my-10">
+          <div className="w-380 my-10">
             <img src={HomeKata} alt="" className="w-full" />
           </div>
           <div className="my-10">
@@ -267,9 +272,11 @@ export default function App() {
               aylanish huquqini beradi. Bu esa o'z navbatida hamkorlar va
               iste'molchilarning e'tirofini tasdiqlaydi.
             </p>
-            <button className="border-2 rounded-xl py-1 px-6 mt-8 border-gray-400">
-              Batafsil
-            </button>
+            <NavLink to="/biz">
+              <button className="border-2 rounded-xl py-1 px-6 mt-8 border-gray-400">
+                Batafsil
+              </button>
+            </NavLink>
           </div>
         </div>
 
@@ -278,18 +285,33 @@ export default function App() {
           className="flex items-center  mx-auto justify-between mb-20"
         >
           <div
-            id="card_home_kata1"
-            className="h-108 w-250 flex border-2 p-6  rounded-sm border-gray-400"
+            id="home_3ta_card1234567898"
+            className="h-114 w-190 flex border-2 p-6  rounded-sm border-gray-400"
           >
             <div>
-              <img src={HomeImg14} alt="" className="w-100" />
+              <img src={HomeImg1} alt="" className="" />
             </div>
             <div>
-              <h2 className="text-4xl">Elektr bilan isitish qurilmasi UEO</h2>
-              <p className="my-12 text-2xl">
+              <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
+              <p className="my-12 text-1xl">
                 Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
                 chiqarish binolari va boshqalar
               </p>
+            <div className="flex ">
+            <div class="rating">
+                <input value="5" name="rating" id="star5" type="radio" />
+                <label for="star5"></label>
+                <input value="4" name="rating" id="star4" type="radio" />
+                <label for="star4"></label>
+                <input value="3" name="rating" id="star3" type="radio" />
+                <label for="star3"></label>
+                <input value="2" name="rating" id="star2" type="radio" />
+                <label for="star2"></label>
+                <input value="1" name="rating" id="star1" type="radio" />
+                <label for="star1"></label>
+              </div>
+            </div>
+
               <NavLink to="/about">
                 <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
                   Toifalar
@@ -297,8 +319,11 @@ export default function App() {
               </NavLink>
             </div>
           </div>
-          <div className="">
-            <div className=" flex border-2 p-6 rounded-sm border-gray-400">
+          <div id="home_3ta_card12345678987654321234" className="w-190">
+            <div
+              id="home_3ta_card1234567898"
+              className="h-56 flex border-2 p-6 rounded-sm border-gray-400"
+            >
               <div>
                 <img src={HomeImg1} alt="" />
               </div>
@@ -306,7 +331,6 @@ export default function App() {
                 <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
                 <p className="my-5">
                   Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                  chiqarish binolari va boshqalar
                 </p>
                 <NavLink to="/about">
                   <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
@@ -315,7 +339,10 @@ export default function App() {
                 </NavLink>
               </div>
             </div>
-            <div className="flex border-2 my-10 p-6 rounded-sm border-gray-400 ">
+            <div
+              id="home_3ta_card1234567898"
+              className="h-56 flex border-2 my-10 p-6 rounded-sm border-gray-400 "
+            >
               <div>
                 <img src={HomeImg1} alt="" />
               </div>
@@ -323,7 +350,6 @@ export default function App() {
                 <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
                 <p className="my-5">
                   Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                  chiqarish binolari va boshqalar
                 </p>
                 <NavLink to="/about">
                   <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
@@ -335,22 +361,19 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mb-10">
-          <div className="">
-            <div className="my-10">
-              <h1 className="text-3xl text-center">Afzalliklarimiz</h1>
-            </div>
+        <div className="mb-10 rounded-2xl">
+          <div className="my-10">
             <div
               id="status"
-              className="flex text-center justify-between w-full"
+              className="flex text-center justify-between w-full rounded-xl py-5 px-4"
             >
               {counterValues.map((_, index) => (
                 <div
-                  className="af_card text-center flex  items-center "
+                  className="af_card text-center flex  items-center"
                   key={index}
                 >
-                  <img
-                    className="af_img"
+                  {/* <img
+                    className="w-20"
                     src={
                       index === 0
                         ? HomeImg20
@@ -361,10 +384,21 @@ export default function App() {
                         : HomeImg23
                     }
                     alt={`Afzal ${index + 1}`}
-                  />
-                  <div>
-                    <p className="text-2xl">{counts[index]}</p>
-                    <p className="text-xl">
+                  /> */}
+                  <h1 className="text-5xl mr-4">
+                    {index === 0 ? (
+                      <i class="fa-solid fa-gears text-red-400"></i>
+                    ) : index === 1 ? (
+                      <i class="fa-solid fa-hourglass-half text-blue-800"></i>
+                    ) : index === 2 ? (
+                      <i class="fa-solid fa-book text-blue-600"></i>
+                    ) : (
+                      <i class="fa-solid fa-industry text-green-500"></i>
+                    )}
+                  </h1>
+                  <div className="">
+                    <p className="text-3xl text-start">{counts[index]}</p>
+                    <p className="text-sm">
                       {index === 0 && "Yildan beri bozorda"}
                       {index === 1 && "Hususiy ishlab chiqarish"}
                       {index === 2 && "Nemis komponentlari"}
@@ -380,27 +414,27 @@ export default function App() {
         <div>
           <h1 className="text-4xl text-center mt-20">Xizmatlar</h1>
           <div id="home_3ta_card_2_chisi" className="flex items-center">
-            <div className="flex border-2 border-gray-400 rounded-xl">
+            <div className="flex border-2 border-gray-400 rounded-xl py-4 px-4">
               <div>
-                <img className="rounded-xl w-100 h-45" src={Hizmat1} alt="" />
+                <img className="rounded-xl w-70 h-45" src={Hizmat1} alt="" />
               </div>
               <div className="p-3">
                 <h2 className="text-2xl mb-4 ">Bizning Hizmatdan </h2>
                 <p>Bizning hizmatlarimiz </p>
               </div>
             </div>
-            <div className="flex border-2 border-gray-400 rounded-xl">
+            <div className="flex border-2 border-gray-400 rounded-xl  py-4 px-4">
               <div>
-                <img className="rounded-xl w-100 h-45" src={Hizmat2} alt="" />
+                <img className="rounded-xl w-70 h-45" src={Hizmat2} alt="" />
               </div>
               <div className="p-3">
                 <h2 className="text-2xl mb-4">Bizning Hizmatdan </h2>
                 <p>Bizning hizmatlarimiz </p>
               </div>
             </div>
-            <div className="flex border-2 border-gray-400 rounded-xl">
+            <div className="flex border-2 border-gray-400 rounded-xl  py-4 px-4">
               <div>
-                <img className="rounded-xl w-100 h-45" src={Hizmat3} alt="" />
+                <img className="rounded-xl w-70 h-45" src={Hizmat3} alt="" />
               </div>
               <div className="p-3">
                 <h2 className="text-2xl mb-4">Bizning Hizmatdan </h2>
@@ -459,13 +493,13 @@ export default function App() {
           {currentProducts.map((product, index) => (
             <div
               key={index}
-              className="flex py-10 border-2 rounded-xl border-gray-400"
+              className="flex py-3 px-3 border-2 rounded-xl border-gray-400"
             >
               <div>
                 <img
                   src={product.img || "/placeholder.svg"}
                   alt=""
-                  className="h-70 w-300"
+                  className="h-70 w-300 rounded-xl"
                 />
               </div>
               <div>

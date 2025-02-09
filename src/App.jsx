@@ -10,7 +10,6 @@ import "./App.css";
 import Home from "./Pages/Home";
 import About from "./layout/About";
 import Blog from "./Pages/Blog";
-import Sahifalar from "./Pages/Sahifalar";
 import BizHaqimizda from "./Pages/BizHaqimizda";
 import en from "./Language/en";
 import ru from "./Language/ru";
@@ -21,15 +20,34 @@ import Swiper3 from "./Homesiwiper/swiper3";
 import NavbarLayout from "./layout/NavbarLayout";
 import Information from "./Pages/Information";
 import Batafsil from "./Pages/Batafsil";
-import Aloqa from './Pages/Aloqa'
+import Aloqa from "./Pages/Aloqa";
 import { TbMessageChatbotFilled } from "react-icons/tb";
 import Oav from "./Pages/Oav";
-
+import Info from "./Pages/info";
+import Hizmatlar from "./Pages/Hizmatlar";
+import Comment from "./Pages/coment";
+import Saqlanganlar from "./Pages/Saqlanganlar";
+import { Toaster, toast } from "react-hot-toast";
+import SearchItem from "./Pages/SearchItem";
+import { homeItem1 } from "./Malumotlar1";
 const languages = { uz, en, ru };
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter cards by title based on the search query
+  const filteredCards = homeItem1.filter((card) =>
+    card.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const [language, setLanguage] = useState("uz");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]);
+
+  const handleSelectCard = (item) => {
+    setSelectedCards([...selectedCards, item]);
+    toast.success("Mahsulot Saqlandi");
+  };
 
   const t = (key) => languages[language][key] || key;
 
@@ -37,16 +55,26 @@ function App() {
     createRoutesFromElements(
       <Route
         element={
-          <NavbarLayout setLanguage={setLanguage} language={language} t={t} />
+          <NavbarLayout
+            setLanguage={setLanguage}
+            language={language}
+            t={t}
+            setSearchQuery={setSearchQuery}
+            filteredCards={filteredCards}
+            searchQuery={searchQuery}
+            selectedCards={selectedCards}
+          />
         }
       >
         <Route
           path="/"
           element={<Home t={t} setLanguage={setLanguage} language={language} />}
         />
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={<About handleSelectCard={handleSelectCard} />}
+        />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/sahifalar" element={<Sahifalar />} />
         <Route path="/biz" element={<BizHaqimizda />} />
         <Route path="/swiper/1" element={<Swiper1 />} />
         <Route path="/swiper/2" element={<Swiper2 />} />
@@ -54,7 +82,16 @@ function App() {
         <Route path="information/:id" element={<Information />} />
         <Route path="batafsil/:id" element={<Batafsil />} />
         <Route path="/oav" element={<Oav />} />
-        <Route path="/aloqa" element={<Aloqa/>}/>
+        <Route path="/aloqa" element={<Aloqa />} />
+        <Route path="/info/:id" element={<Info />} />
+        <Route path="/hizmatlar" element={<Hizmatlar />} />
+        <Route path="/coment" element={<Comment />} />
+        <Route
+          path="/saqlanganlar"
+          element={<Saqlanganlar selectedCards={selectedCards} />}
+        />
+        <Route path="/searchitem" element={<SearchItem  handleSelectCard={handleSelectCard}  filteredCards={filteredCards}
+        />} />
       </Route>
     )
   );
@@ -91,6 +128,7 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster position="top-right" reverseOrder={false} />
       <RouterProvider router={routes} />
       <div id="chatbot_div">
         <button

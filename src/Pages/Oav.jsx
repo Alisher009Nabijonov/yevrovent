@@ -28,13 +28,17 @@ const Oav = () => {
         </div>
       </div>
       <div className="px-10 text-center  gap-10">
-        <button className=" rounded-t-xl py-1 px-8 mr-5 text-xl bg-gray-400" onClick={() => handleCategoryClick(1)}>Rasim</button>
-        <button className=" rounded-t-xl py-1 px-8 text-xl bg-gray-400" onClick={() => handleCategoryClick(2)}>Video</button>
+        <button   className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
+                selectedCategory === 1 ? "bg-blue-600 text-amber-50 border-none" : ""
+              }`} onClick={() => handleCategoryClick(1)}>Rasim</button>
+        <button  className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
+                selectedCategory === 2 ? "bg-blue-600 text-amber-50 border-none" : ""
+              }`} onClick={() => handleCategoryClick(2)}>Video</button>
         <hr  className="px-10"/>
       </div>
       <div>
         {selectedCategory === 1 && (
-          <div className="flex px-10">
+          <div id="oav_glavniy" className="flex px-10">
             <div id="oav" className="w-1/2 p-3 rounded-xl">
               <div>
                 <img src={oav1} alt="" />

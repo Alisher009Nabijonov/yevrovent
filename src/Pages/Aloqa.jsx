@@ -36,13 +36,21 @@ const Oav = () => {
       </div>
       <div className="px-10   gap-10">
         <button
-          className=" rounded-t-sm py-2 px-8 mr-5 text-xl text-amber-50 bg-gray-400 cursor-pointer"
+          className={` rounded-t-sm py-2 px-8 text-xl   cursor-pointer border-1  ${
+            selectedCategory === 1
+              ? "bg-blue-600 text-amber-50 border-none"
+              : ""
+          }`}
           onClick={() => handleCategoryClick(1)}
         >
           Mijozlar Uchun
         </button>
         <button
-          className=" rounded-t-sm py-2 px-8 text-xl text-amber-50 bg-gray-400 cursor-pointer"
+          className={` rounded-t-sm py-2 px-8 text-xl   cursor-pointer border-1  ${
+            selectedCategory === 2
+              ? "bg-blue-600 text-amber-50 border-none"
+              : ""
+          }`}
           onClick={() => handleCategoryClick(2)}
         >
           Ariza Beruvchilar uchun
@@ -51,7 +59,7 @@ const Oav = () => {
       </div>
       <div>
         {selectedCategory === 1 && (
-          <div className="flex px-10">
+          <div id="aloqa_glavniy" className="flex px-10">
             <div id="aloqa" className="w-1/2 p-3 rounded-xl">
               <h1 className="text-4xl p-3">yevro-vent ofisi</h1>
               <p className="text-xl p-3 flex items-center">
@@ -60,11 +68,11 @@ const Oav = () => {
                 O'zbekiston, Toshkent sh., Yashnobod, Boysun ko'chasi, 67
               </p>
               <p className="text-xl p-2 flex">
-                <FaPhoneAlt className="text-red-600 items-center"/>
+                <FaPhoneAlt className="text-red-600 items-center" />
                 +998 97 033 34 55
               </p>
               <p className="text-xl p-2 flex items-center">
-                <FaPhoneAlt className="text-red-600"/>
+                <FaPhoneAlt className="text-red-600" />
                 +998 97 033 34 55
               </p>
               <div className="mt-15 p-4 bg-blue-800 text-amber-50">
@@ -93,11 +101,12 @@ const Oav = () => {
             </div>
             <div id="aloqa" className="w-1/2 ">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093785!2d-122.41941548468202!3d37.77492977975911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5e573c61%3A0x807b748df3ed1b45!2sGoogle!5e0!3m2!1sen!2s!4v1617147787043!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1374.6577436910584!2d69.31906942905556!3d41.28384416624742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zWWFzaG5vYm9kIFR1bWFuaSwg0KLQsNGI0LrQtdC90YIgYm95c3VuIDYw!5e0!3m2!1sru!2s!4v1665028772127!5m2!1sru!2s"
                 width="600"
                 height="450"
                 allowfullscreen=""
                 loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>

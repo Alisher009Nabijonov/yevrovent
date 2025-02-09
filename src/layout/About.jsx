@@ -3,14 +3,25 @@ import { homeItem1 } from "../Malumotlar1";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa6";
 import { IoSearchSharp } from "react-icons/io5";
+import { FaComment } from "react-icons/fa";
+import { IoMdEye } from "react-icons/io";
 
-const About = () => {
+const About = ({ handleSelectCard }) => {
   const [selectedCategory, setSelectedCategory] = useState(1);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredItems, setFilteredItems] = useState(homeItem1);
+
+  const handleSearch = () => {
+    const filtered = homeItem1.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
   return (
     <>
       <div className="text-center">
@@ -110,47 +121,71 @@ const About = () => {
           </div>
         </div>
 
-        <div className="w-full px-10 py-10">
+        <div id="toifa_card_cata_oraptur_div" className="w-full px-10 py-10">
           <div className="">
-            <form className="flex ">
+            <form
+              className="flex "
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch();
+              }}
+            >
               <input
                 type="search"
                 placeholder="Qidiruv"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full border-2 border-gray-400 py-2 px-2 rounded-xl bg-amber-50"
               />
-              <button className="bg-red-400 cursor-pointer rounded-xl py-2 border-gray-400 px-6 text-amber-50 text-2xl">
+              <button
+                type="submit"
+                className="bg-blue-800 cursor-pointer rounded-xl py-2 border-gray-400 px-6 text-amber-50 text-2xl"
+              >
                 <IoSearchSharp />
               </button>
             </form>
           </div>
           {selectedCategory === 1 && (
-            <div id="toifa_card_cata" className="my-10">
-              {homeItem1.slice(0, 12).map((item) => (
-                <div
-                  key={item.id}
-                  id="card1"
-                  className="text-center w-90 h-120 justify-between mx-2 rounded-sm my-3 p-3"
-                >
-                  <div>
-                    <img
-                      src={item.img || "/placeholder.svg"}
-                      alt={item.title}
-                      className=" pl-15 object-cover flex items-cems-items-startify-center"
-                    />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl">{item.title}</h2>
+
+          <div id="toifa_card_cata">
+            {filteredItems.slice(0, 12).map((item) => (
+              <div
+                key={item.id}
+                id="card1"
+                className="text-center w-90 h-120 justify-between mx-2 rounded-sm my-3 p-3"
+              >
+                <div>
+                  <img
+                    src={item.img || "/placeholder.svg"}
+                    alt={item.title}
+                    className=" pl-15 object-cover flex items-cems-items-startify-center"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl">{item.title}</h2>
+                  <div className="flex justify-center">
                     <div>
                       <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                        <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <IoMdEye />
                         </button>
                       </NavLink>
+                      <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        <NavLink to="/coment">
+                          <FaComment />
+                        </NavLink>
+                      </button>
+                    </div>
+                    <div>
+                      <button onClick={() => handleSelectCard(item)}>
+                        <i className="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
           )}
 
           {selectedCategory === 2 && (
@@ -170,12 +205,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -200,12 +247,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -230,11 +289,25 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <NavLink to={`/batafsil/${item.id}`}>
-                      <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                        Batafsil
-                      </button>
-                    </NavLink>
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
+                        </button>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -257,12 +330,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -286,12 +371,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -315,12 +412,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -344,12 +453,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -373,12 +494,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -402,12 +535,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -432,12 +577,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -461,12 +618,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>{" "}
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -490,12 +659,24 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -519,67 +700,122 @@ const About = () => {
                   </div>
                   <div>
                     <h2 className="text-2xl">{item.title}</h2>
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="mt-6 border-2 py-1 px-8 text-xl rounded-sm">
-                          Batafsil
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                          <NavLink to="/coment">
+                            <FaComment />
+                          </NavLink>
                         </button>
-                      </NavLink>
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i class="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           )}
-          <div className="flex text-center w-full pl-20 pb-10 gap-5">
-            <h1
-              onClick={() => handleCategoryClick(2)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              1
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(3)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              2
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(4)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              3
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(5)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              4
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(6)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              5
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(7)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              6
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(8)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              7
-            </h1>
-            <h1
-              onClick={() => handleCategoryClick(9)}
-              className="cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3"
-            >
-              8
-            </h1>
+          <div
+            id="toifa_pagination_btn_son"
+            className="flex text-center w-full pl-15 pb-10 gap-5"
+          >
+            <div id="qqqqqq" className="flex ">
+              <h1
+                onClick={() => handleCategoryClick(2)}
+                className={`cursor-pointer text-2xl  border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 2
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                1
+              </h1>
+              <h1
+                onClick={() => handleCategoryClick(3)}
+                className={`cursor-pointer text-2xl  border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 3
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                2
+              </h1>
+            </div>
+            <div id="qqqqqq" className="flex">
+              <h1
+                onClick={() => handleCategoryClick(4)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 4
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                3
+              </h1>
+              <h1
+                onClick={() => handleCategoryClick(5)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 5
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                4
+              </h1>
+            </div>
+            <div id="qqqqqq" className="flex">
+              <h1
+                onClick={() => handleCategoryClick(6)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 6
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                5
+              </h1>
+              <h1
+                onClick={() => handleCategoryClick(7)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 7
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                6
+              </h1>
+            </div>
+            <div id="qqqqqq" className="flex">
+              <h1
+                onClick={() => handleCategoryClick(8)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 8
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                7
+              </h1>
+              <h1
+                onClick={() => handleCategoryClick(9)}
+                className={`cursor-pointer text-2xl border-2 rounded-2xl border-black p-3 mr-3 px-4 py-2  ${
+                  selectedCategory === 9
+                    ? "bg-blue-600 text-amber-50 border-none"
+                    : ""
+                }`}
+              >
+                8
+              </h1>
+            </div>
           </div>
         </div>
         <Outlet />
