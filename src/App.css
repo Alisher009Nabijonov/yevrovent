@@ -126,11 +126,8 @@
 }
 
 .swiper-slide {
-  /* text-align: center; */
   font-size: 18px;
   background: #fff;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -410,13 +407,21 @@ input[type="number"] {
   width: 100%;
 }
 
-/* Sidebar animatsiyasi uchun */
 #fixed {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   color: #fff;
+}
+
+#fixed1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  color: #fff;
+  margin: 0;
 }
 
 .transition-transform {
@@ -430,6 +435,15 @@ input[type="number"] {
 .-translate-x-full {
   transform: translateX(-100%);
 }
+
+.translate-x-01 {
+  transform: translatey(0);
+}
+
+.-translate-x-full1 {
+  transform: translatey(-100%);
+}
+
 .bars {
   display: none;
 }
@@ -437,6 +451,9 @@ input[type="number"] {
   color: #fff !important;
 }
 @media (max-width: 550px) {
+  #nav_987654321234567890__a {
+    display: none;
+  }
   #home_pagination_page p {
     display: none;
   }
@@ -466,10 +483,7 @@ input[type="number"] {
   #swiper_card_salom_img_kata {
     width: 100%;
   }
-  #logo_input_btn_nav {
-    flex-direction: column;
-    padding: 0;
-  }
+
   #home_carusel {
     padding: 0;
   }
@@ -576,18 +590,14 @@ input[type="number"] {
   }
 }
 
-/* From Uiverse.io by PriyanshuGupta28 */
 .rating {
   display: flex;
   flex-direction: row-reverse;
-  /* Reverse the order of the stars */
   font-size: 0;
-  /* Remove the space between the elements */
 }
 
 .rating input[type="radio"] {
   display: none;
-  /* Hide the radio buttons */
 }
 
 .rating label {
@@ -603,4 +613,26 @@ input[type="number"] {
 
 .rating input[type="radio"]:checked ~ label:before {
   color: orange;
+}
+#grid_list_link a.active {
+  color: blue;
+}
+@media (max-width: 899px) {
+  .rou {
+    display: none;
+  }
+}
+.rou1 {
+  width: 88%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 21px;
+  margin-left: 5px;
+  color: black;
+}
+.rou1 input {
+  margin: 0;
+  width: 100%;
 }

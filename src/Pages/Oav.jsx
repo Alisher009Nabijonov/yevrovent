@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import oav1 from "../assets/500.jpg";
 import oav2 from "../assets/501.jpg";
 import { NavLink, Outlet } from "react-router-dom";
@@ -28,13 +28,27 @@ const Oav = () => {
         </div>
       </div>
       <div className="px-10 text-center  gap-10">
-        <button   className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
-                selectedCategory === 1 ? "bg-blue-600 text-amber-50 border-none" : ""
-              }`} onClick={() => handleCategoryClick(1)}>Rasim</button>
-        <button  className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
-                selectedCategory === 2 ? "bg-blue-600 text-amber-50 border-none" : ""
-              }`} onClick={() => handleCategoryClick(2)}>Video</button>
-        <hr  className="px-10"/>
+        <button
+          className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
+            selectedCategory === 1
+              ? "bg-blue-600 text-amber-50 border-none"
+              : ""
+          }`}
+          onClick={() => handleCategoryClick(1)}
+        >
+          Rasim
+        </button>
+        <button
+          className={`rounded-t-xl py-1 px-8 mr-5 text-xl border-1  ${
+            selectedCategory === 2
+              ? "bg-blue-600 text-amber-50 border-none"
+              : ""
+          }`}
+          onClick={() => handleCategoryClick(2)}
+        >
+          Video
+        </button>
+        <hr className="px-10" />
       </div>
       <div>
         {selectedCategory === 1 && (
@@ -48,10 +62,9 @@ const Oav = () => {
                 <p className="text-gray-500 pb-10">
                   Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
                   tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash
-                  va sotishdan iborat.
-                  Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
-                  tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash
-                  va sotishdan iborat.
+                  va sotishdan iborat. Korxonaning asosiy faoliyati
+                  ventilyatsiya va konditsioner tizimlari uchun sanoat
+                  uskunalarini ishlab chiqish, tayyorlash va sotishdan iborat.
                 </p>
               </div>
             </div>
@@ -60,14 +73,13 @@ const Oav = () => {
                 <img src={oav2} alt="" />
               </div>
               <div>
-              <h1 className="text-2xl py-5">Bizning ofisimiz</h1>
+                <h1 className="text-2xl py-5">Bizning ofisimiz</h1>
                 <p className="text-gray-500 pb-10">
                   Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
                   tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash
-                  va sotishdan iborat.
-                  Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
-                  tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash
-                  va sotishdan iborat.
+                  va sotishdan iborat. Korxonaning asosiy faoliyati
+                  ventilyatsiya va konditsioner tizimlari uchun sanoat
+                  uskunalarini ishlab chiqish, tayyorlash va sotishdan iborat.
                 </p>
               </div>
             </div>
@@ -75,7 +87,16 @@ const Oav = () => {
         )}
         {selectedCategory === 2 && (
           <div className="flex items-center justify-center px-10 ">
-           <iframe width="853" height="480" src="https://www.youtube.com/embed/yRlwH2p9pAg" title="Вентиляция. контроль климата на складе. Пример проекта, нюансы монтажа, стоимость. 4К. часть 2." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe
+              width="853"
+              height="480"
+              src="https://www.youtube.com/embed/yRlwH2p9pAg"
+              title="Вентиляция. контроль климата на складе. Пример проекта, нюансы монтажа, стоимость. 4К. часть 2."
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
         )}
       </div>

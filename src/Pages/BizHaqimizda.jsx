@@ -38,7 +38,6 @@ const BizHaqimizda = () => {
           <p className=" text-gray-400">
             <TypeAnimation
               sequence={[
-                // Same substring at the start will only be typed out once, initially
                 "Yevro-vent MChJ 2014 yilda tashkil etilgan. Korxonaning asosiy faoliyati ventilyatsiya va konditsioner tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash va sotishdan iborat. Ko'p yillik muvaffaqiyatli ish tajribasi bizga O'zbekiston Respublikasi bozorining eng professional korxonalaridan biriga aylanish huquqini beradi. Bu esa o'z navbatida hamkorlar va iste'molchilarning e'tirofini tasdiqlaydi.",
                 1000,
               ]}
@@ -55,7 +54,6 @@ const BizHaqimizda = () => {
           <p className="text-xs">
             <TypeAnimation
               sequence={[
-                // Same substring at the start will only be typed out once, initially
                 "1 «Yevro-vent» - O'zbekiston Respublikasida zamonaviy ishlab chiqarish bazasiga ega bo'lgan yetakchi ishlab chiqarish korxonasi va mustaqil ravishda ventilyatsiya va konditsioner tizimlari uchun uskunalarning to'liq majmuasini ishlab chiqaradi. Kompaniyamiz zamonaviy uskunalar bilan jihozlangan:",
                 1000,
               ]}

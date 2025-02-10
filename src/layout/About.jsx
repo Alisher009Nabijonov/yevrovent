@@ -5,6 +5,8 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaComment } from "react-icons/fa";
 import { IoMdEye } from "react-icons/io";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { FaListUl } from "react-icons/fa";
 
 const About = ({ handleSelectCard }) => {
   const [selectedCategory, setSelectedCategory] = useState(1);
@@ -145,47 +147,65 @@ const About = ({ handleSelectCard }) => {
               </button>
             </form>
           </div>
+          <div id="grid_list_link" className="flex items-center">
+            <div>
+              <h2 className="text-xl my-3">Malumot holati:</h2>
+            </div>
+            <div>
+              <NavLink to="/about">
+                <h2>
+                  <BsFillGrid3X3GapFill />
+                </h2>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/about1">
+                <h2>
+                  <FaListUl />
+                </h2>
+              </NavLink>
+            </div>
+          </div>
           {selectedCategory === 1 && (
-
-          <div id="toifa_card_cata">
-            {filteredItems.slice(0, 12).map((item) => (
-              <div
-                key={item.id}
-                id="card1"
-                className="text-center w-90 h-120 justify-between mx-2 rounded-sm my-3 p-3"
-              >
-                <div>
-                  <img
-                    src={item.img || "/placeholder.svg"}
-                    alt={item.title}
-                    className=" pl-15 object-cover flex items-cems-items-startify-center"
-                  />
-                </div>
-                <div>
-                  <h2 className="text-2xl">{item.title}</h2>
-                  <div className="flex justify-center">
-                    <div>
-                      <NavLink to={`/batafsil/${item.id}`}>
-                        <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
-                          <IoMdEye />
-                        </button>
-                      </NavLink>
-                      <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+            <div id="toifa_card_cata">
+              {filteredItems.slice(0, 12).map((item) => (
+                <div
+                  key={item.id}
+                  id="card1"
+                  className="text-center w-90 h-120 justify-between mx-2 rounded-sm my-3 p-3"
+                >
+                  <div>
+                    <img
+                      src={item.img || "/placeholder.svg"}
+                      alt={item.title}
+                      className=" pl-15 object-cover flex items-cems-items-startify-center"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl">{item.title}</h2>
+                    <div className="flex justify-center">
+                      <div>
+                        <NavLink to={`/batafsil/${item.id}`}>
+                          <button className="cursor-pointer ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                            <IoMdEye />
+                          </button>
+                        </NavLink>
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                         <NavLink to="/coment">
                           <FaComment />
                         </NavLink>
-                      </button>
-                    </div>
-                    <div>
-                      <button onClick={() => handleSelectCard(item)}>
-                        <i className="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
-                      </button>
+                      </button> */}
+                      </div>
+                      <div>
+                        <button onClick={() => handleSelectCard(item)}>
+                          <i className="fa-solid fa-bookmark cursor-pointer  ml-2 mt-6 border-2 py-2 px-4 text-xl rounded-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           )}
 
           {selectedCategory === 2 && (
@@ -212,11 +232,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -254,11 +274,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -296,11 +316,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -337,11 +357,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -378,11 +398,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -419,11 +439,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -460,11 +480,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -501,11 +521,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -542,11 +562,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -584,11 +604,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -625,11 +645,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -666,11 +686,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>
@@ -707,11 +727,11 @@ const About = ({ handleSelectCard }) => {
                             <IoMdEye />
                           </button>
                         </NavLink>
-                        <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
+                        {/* <button className="cursor-pointer ml-4 mt-6 border-2 py-2 px-4 text-xl rounded-sm">
                           <NavLink to="/coment">
                             <FaComment />
                           </NavLink>
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <button onClick={() => handleSelectCard(item)}>

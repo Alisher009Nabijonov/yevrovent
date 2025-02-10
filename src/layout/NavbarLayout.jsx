@@ -9,7 +9,7 @@ import {
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/logologo123.jpg";
 import { Toaster, toast } from "react-hot-toast";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -18,6 +18,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { motion } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 
 const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -112,14 +113,23 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       });
   };
 
-  let [bars, setBars] = useState(false); // Sidebar ko'rinish holatini boshqarish uchun
+  let [bars, setBars] = useState(false); 
+  let [bars1, setBars1] = useState(false);
 
   const toggleBars = () => {
-    setBars(true); // Sidebarni ochish
+    setBars(true); 
   };
 
   const toggleBarsClose = () => {
-    setBars(false); // Sidebarni yopish
+    setBars(false); 
+  };
+
+  const toggleBars1 = () => {
+    setBars1(true); 
+  };
+
+  const toggleBarsClose1 = () => {
+    setBars1(false);
   };
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -127,9 +137,9 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
 
-    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ"; // Bot tokeningiz
-    const chatId = "5900769240"; // Telegram chat ID
-    const text = `Telefon raqam: ${phoneNumber}`; // Yuboriladigan matn
+    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ"; 
+    const chatId = "5900769240"; 
+    const text = `Telefon raqam: ${phoneNumber}`;
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
@@ -144,7 +154,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       .then((response) => response.json())
       .then((data) => {
         toast.success("Raqam muvaffaqiyatli yuborildi!");
-        setPhoneNumber(""); // Formani tozalash
+        setPhoneNumber(""); 
       })
       .catch((error) => {
         toast.error("Xatolik yuz berdi. Qayta urinib ko'ring.");
@@ -155,15 +165,17 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
-    }, 1500); // Animatsiya davomiyligi bilan mos ravishda
+    }, 1500);
   };
 
   return (
     <div>
       <Toaster position="top-right" reverseOrder={false} />
       <header>
-        {/* Top Info Section */}
-        <div className="flex flex-col sm:flex-row  items-center justify-between my-4  mx-auto px-4">
+        <div
+          id="nav_987654321234567890__a"
+          className="flex justify-between px-5  "
+        >
           <div id="nav_987654321" className="flex sm:text-left">
             <p className="flex items-center justify-center sm:justify-start text-sm">
               <FaPhone className="mr-2" />
@@ -176,7 +188,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           </div>
           <div
             id="nav_987654321"
-            className="flex flex-col sm:flex-row items-center gap-3 mt-4 sm:mt-0 relative"
+            className="flex flex-col sm:flex-row items-start gap-3 mt-4 sm:mt-0 relative"
           >
             <p className="flex items-center text-sm">
               <IoLocation className="mr-2" />
@@ -237,14 +249,14 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           </div>
         </div>
         {/* Navbar */}
-        <div className="bg-blue-900 py-4">
+        <div id="nav_blue_responsive_katalash" className="bg-blue-900 py-4">
           <div className=" flex flex-wrap items-center justify-between  px-4">
             <div
               id="logo_input_btn_nav"
               className="flex items-center gap-10 flex-1"
             >
-              {/* <img src={Logo} alt="Logo" className="w-32 sm:w-52" /> */}
-              <h3 className="font-bold text-lg text-amber-50">YEВРО-VENT</h3>
+              <img src={Logo} alt="Logo" className="w-32 sm:w-52" />
+              {/* <h3 className="font-bold text-lg text-amber-50">YEВРО-VENT</h3> */}
               <div className="flex-1">
                 <div className="rou">
                   <input
@@ -348,6 +360,43 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
             >
               <FaBarsStaggered />
             </i>
+            <i
+              id="bars"
+              className="cursor-pointer text-xl bars text-white"
+              onClick={toggleBars1}
+            >
+              <FaSearch />
+            </i>
+
+            <div
+              id="fixed1"
+              className={`fixed1 flex items-center top-0 left-0 h-25 w-full bg-blue-900 text-white transition-transform duration-300 ${
+                bars1 ? "translate-x-01" : "-translate-x-full1"
+              }`}
+            >
+            
+              <div className="rou1">
+                <input
+                  type="text"
+                  placeholder="Qidirish"
+                  className="inp"
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <NavLink to="/searchitem">
+                  {" "}
+                  <button className="btn">{t("nav3")}</button>
+                </NavLink>
+              </div>
+              <div>
+                <p
+                  className="text-4xl pb-3"
+                  onClick={toggleBarsClose1}
+                >
+                  x
+                </p>
+              </div>
+            </div>
+
             <div
               id="fixed"
               className={`fixed top-0 left-0 h-full w-64 bg-blue-900 text-white transition-transform duration-300 ${
@@ -397,114 +446,6 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       <main>
         <Outlet />
       </main>
-      {/* Footer */}
-      {/* <footer className="bg-blue-950 text-white py-10">
-        <div
-          id="salom"
-          className="flex items-center justify-between my-20 bg-amber-50 text-black py-6 px-6 rounded-4xl"
-        >
-          <div>
-            <h2 className="text-2xl">Aloqa Uchun Tel Raqam</h2>
-          </div>
-          <div className="bg-yellow-400 py-1 px-8 rounded-xl">
-            <form onSubmit={handleSubmit2} className="flex items-center gap-4">
-              <PhoneInput
-                country={"uz"}
-                value={phoneNumber}
-                onChange={(phone) => setPhoneNumber(phone)}
-                inputStyle={{
-                  borderRadius: "8px",
-                  padding: "",
-                  border: "2px solid black",
-                  width: "240px",
-                  background: "none",
-                }}
-              />
-              <motion.button
-                id="samaliot_btn"
-                type="submit"
-                className="px-2 py-2 rounded-lg flex items-center "
-                whileTap={{ scale: 0.9 }}
-              >
-                <motion.div
-                  animate={
-                    isAnimating
-                      ? { y: [-50, 0], rotate: [0, 360] } // Tepaga ko'tarilib aylanish
-                      : {}
-                  }
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                >
-                  <BsAirplaneFill />
-                </motion.div>
-              </motion.button>
-            </form>
-          </div>
-          <div>
-            <h2>
-              Tel: <a href="tel: +998 77 324 30 09">(+998) 77 324 30 09</a>
-            </h2>
-          </div>
-        </div>
-        <div className=" justify-center  px-4 mt-20">
-          <div className="flex gap-10 items-center justify-between">
-            <div className="flex items-center">
-              <div className="mr-10">
-                <h3 className="font-bold text-lg">YEВРО-VENT</h3>
-              </div>
-              <div className="flex space-x-4 mt-4">
-                <div className="w-15 h-15 rounded-full bg-blue-800 flex items-center justify-center">
-                  <FaGoogle className="text-3xl" />
-                </div>
-                <div className="w-15 h-15 rounded-full bg-blue-800 flex items-center justify-center">
-                  <FaFacebook className="text-3xl" />
-                </div>
-                <div className="w-15 h-15 rounded-full bg-blue-800 flex items-center justify-center">
-                  <FaInstagram className="text-2xl" />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h1 className="text-2xl">
-                <span>Telefon</span>+998 99 999 99 99
-              </h1>
-            </div>
-          </div>
-          <div>
-            <div>
-              <h3 className="font-bold text-lg">{t("nav9")}</h3>
-              <ul id="hover_text" className="mt-2 space-y-2 text-sm">
-                <li>Konditsionerlar</li>
-                <li>Ventilyatorlar</li>
-                <li>Isitish tizimlari</li>
-                <li>Sovutish tizimlari</li>
-                <li>Montaj ishlari</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg">{t("nav10")}</h3>
-              <ul id="hover_text" className="mt-2 space-y-2 text-sm">
-                <NavLink to="/biz">
-                  <li>Biz haqimizda</li>
-                </NavLink>
-                <li>Bog'lanish</li>
-                <li>Qaytarish siyosati</li>
-                <li>Maxfiylik siyosati</li>
-                <li>To'lov siyosati</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg">{t("nav11")}</h3>
-              <ul id="hover_text" className="mt-2 space-y-2 text-sm">
-                <li>Yangiliklar</li>
-                <li>Xizmatlar</li>
-                <li>Bizning siyosat</li>
-                <li>Mijozlarga xizmat</li>
-                <li>Ko'p so'raladigan savollar</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> */}
       <footer className="bg-blue-950 text-white py-10">
         <div
           id="salom"

@@ -25,17 +25,17 @@ import { TbMessageChatbotFilled } from "react-icons/tb";
 import Oav from "./Pages/Oav";
 import Info from "./Pages/info";
 import Hizmatlar from "./Pages/Hizmatlar";
-import Comment from "./Pages/coment";
+// import Comment from "./Pages/coment";
 import Saqlanganlar from "./Pages/Saqlanganlar";
 import { Toaster, toast } from "react-hot-toast";
 import SearchItem from "./Pages/SearchItem";
 import { homeItem1 } from "./Malumotlar1";
+import About1 from "./layout/About1";
 const languages = { uz, en, ru };
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter cards by title based on the search query
   const filteredCards = homeItem1.filter((card) =>
     card.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -74,6 +74,10 @@ function App() {
           path="/about"
           element={<About handleSelectCard={handleSelectCard} />}
         />
+        <Route
+          path="/about1"
+          element={<About1 handleSelectCard={handleSelectCard} />}
+        />
         <Route path="/blog" element={<Blog />} />
         <Route path="/biz" element={<BizHaqimizda />} />
         <Route path="/swiper/1" element={<Swiper1 />} />
@@ -90,8 +94,15 @@ function App() {
           path="/saqlanganlar"
           element={<Saqlanganlar selectedCards={selectedCards} />}
         />
-        <Route path="/searchitem" element={<SearchItem  handleSelectCard={handleSelectCard}  filteredCards={filteredCards}
-        />} />
+        <Route
+          path="/searchitem"
+          element={
+            <SearchItem
+              handleSelectCard={handleSelectCard}
+              filteredCards={filteredCards}
+            />
+          }
+        />
       </Route>
     )
   );

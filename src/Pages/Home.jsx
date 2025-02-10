@@ -297,20 +297,20 @@ export default function App() {
                 Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
                 chiqarish binolari va boshqalar
               </p>
-            <div className="flex ">
-            <div class="rating">
-                <input value="5" name="rating" id="star5" type="radio" />
-                <label for="star5"></label>
-                <input value="4" name="rating" id="star4" type="radio" />
-                <label for="star4"></label>
-                <input value="3" name="rating" id="star3" type="radio" />
-                <label for="star3"></label>
-                <input value="2" name="rating" id="star2" type="radio" />
-                <label for="star2"></label>
-                <input value="1" name="rating" id="star1" type="radio" />
-                <label for="star1"></label>
+              <div className="flex ">
+                <div class="rating">
+                  <input value="5" name="rating" id="star5" type="radio" />
+                  <label for="star5"></label>
+                  <input value="4" name="rating" id="star4" type="radio" />
+                  <label for="star4"></label>
+                  <input value="3" name="rating" id="star3" type="radio" />
+                  <label for="star3"></label>
+                  <input value="2" name="rating" id="star2" type="radio" />
+                  <label for="star2"></label>
+                  <input value="1" name="rating" id="star1" type="radio" />
+                  <label for="star1"></label>
+                </div>
               </div>
-            </div>
 
               <NavLink to="/about">
                 <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
@@ -372,19 +372,6 @@ export default function App() {
                   className="af_card text-center flex  items-center"
                   key={index}
                 >
-                  {/* <img
-                    className="w-20"
-                    src={
-                      index === 0
-                        ? HomeImg20
-                        : index === 1
-                        ? HomeImg21
-                        : index === 2
-                        ? HomeImg22
-                        : HomeImg23
-                    }
-                    alt={`Afzal ${index + 1}`}
-                  /> */}
                   <h1 className="text-5xl mr-4">
                     {index === 0 ? (
                       <i class="fa-solid fa-gears text-red-400"></i>
