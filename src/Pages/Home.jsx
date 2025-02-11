@@ -149,7 +149,7 @@ export default function App() {
           <SwiperSlide>
             <div id="home_carusel" className="flex items-center px-20">
               <div className=" mx-auto py-10">
-                <h1 className="text-4xl">Elektr bilan isitish qurilmasi UEO</h1>
+                <h1  className="text-4xl">Elektr bilan isitish qurilmasi UEO</h1>
                 <p className="my-10">
                   Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
                   chiqarish binolari va boshqalar

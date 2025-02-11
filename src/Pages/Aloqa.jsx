@@ -27,7 +27,7 @@ const Oav = () => {
               id="info_h1"
               className="text-2xl flex items-center text-center underline hover:text-orange-400 transition-all-0.5s"
             >
-              Home
+              Asosiy
             </h1>
           </NavLink>
           <FaChevronLeft className="text-orange-400 text-2xl" />
