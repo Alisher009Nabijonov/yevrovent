@@ -9,7 +9,7 @@ import {
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
-import Logo from "../assets/logologo123.jpg";
+import Logo from "../../public/logoogol.png";
 import { Toaster, toast } from "react-hot-toast";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -485,7 +485,8 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
         </div>
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4 mt-20">
           <div>
-            <h3 className="font-bold text-lg">YEВРО-VENT</h3>
+          <img src={Logo} alt="Logo" className="w-32 sm:w-52" />
+            {/* <h3 className="font-bold text-lg">YEВРО-VENT</h3> */}
             <p className="mt-2 text-sm">{t("nav8")}</p>
             <div className="flex space-x-4 mt-4">
               <FaGoogle className="text-2xl" />
