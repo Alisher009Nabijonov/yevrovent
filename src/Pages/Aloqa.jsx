@@ -9,183 +9,281 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { Toaster, toast } from "react-hot-toast";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 const Oav = () => {
   const [selectedCategory, setSelectedCategory] = useState(1);
+  const [form, setForm] = useState({ name: "", phone: "", comment: "" });
+  const [errors, setErrors] = useState({ name: false, phone: false, comment: false });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    if (value.trim() !== "") {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
+      setErrorMessage("");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newErrors = {
+      name: form.name.trim() === "",
+      phone: form.phone.trim() === "",
+      comment: form.comment.trim() === "",
+    };
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((error) => error)) {
+      setErrorMessage("Iltimos, barcha maydonlarni to‘ldiring.");
+      return;
+    }
+
+    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ";
+    const chatId = "5900769240";
+
+    const message = `
+      📝 Yangi ariza:
+      🔹 Ism: ${form.name}
+      🔹 Telefon: ${form.phone}
+      🔹 Izoh: ${form.comment}
+    `;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        toast("Arizangiz yuborildi!");
+        setForm({ name: "", phone: "", comment: "" });
+      } else {
+        toast("Xabar yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.");
+      }
+    } catch (error) {
+      console.error("Telegram bilan ulanishda xatolik:", error);
+      toast("Xabar yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.");
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
+
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
-      <div className="text-center">
-        <h1 className="text-4xl mt-8">MEDIA</h1>
-        <div className="flex items-center text-center justify-center">
-          <NavLink to="/">
-            <h1
-              id="info_h1"
-              className="text-2xl flex items-center text-center underline hover:text-orange-400 transition-all-0.5s"
+      <div className="media-container">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 className="media-title" variants={itemVariants}>
+            MEDIA
+          </motion.h1>
+          <motion.div className="breadcrumb" variants={itemVariants}>
+            <NavLink to="/">
+              <h1 className="breadcrumb-link">Asosiy</h1>
+            </NavLink>
+            <FaChevronLeft className="breadcrumb-icon" />
+            <h3 className="breadcrumb-current">Media</h3>
+          </motion.div>
+
+          <motion.div className="category-buttons" variants={itemVariants}>
+            <motion.button
+              className={`category-button ${
+                selectedCategory === 1 ? "active" : ""
+              }`}
+              onClick={() => handleCategoryClick(1)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Asosiy
-            </h1>
-          </NavLink>
-          <FaChevronLeft className="text-orange-400 text-2xl" />
-          <h3 className="text-2xl">Media</h3>
-        </div>
-      </div>
-      <div className="px-10   gap-10">
-        <button
-          className={` rounded-t-sm py-2 px-8 text-xl   cursor-pointer border-1  ${
-            selectedCategory === 1
-              ? "bg-blue-600 text-amber-50 border-none"
-              : ""
-          }`}
-          onClick={() => handleCategoryClick(1)}
-        >
-          Mijozlar Uchun
-        </button>
-        <button
-          className={` rounded-t-sm py-2 px-8 text-xl   cursor-pointer border-1  ${
-            selectedCategory === 2
-              ? "bg-blue-600 text-amber-50 border-none"
-              : ""
-          }`}
-          onClick={() => handleCategoryClick(2)}
-        >
-          Ariza Beruvchilar uchun
-        </button>
-        <hr className="px-10" />
-      </div>
-      <div>
-        {selectedCategory === 1 && (
-          <div id="aloqa_glavniy" className="flex px-10">
-            <div id="aloqa" className="w-1/2 p-3 rounded-xl">
-              <h1 className="text-4xl p-3">yevro-vent ofisi</h1>
-              <p className="text-xl p-3 flex items-center">
-                {" "}
-                <FaLocationDot className="text-red-600" />
-                O'zbekiston, Toshkent sh., Yashnobod, Boysun ko'chasi, 67
-              </p>
-              <p className="text-xl p-2 flex">
-                <FaPhoneAlt className="text-red-600 items-center" />
-                +998 97 033 34 55
-              </p>
-              <p className="text-xl p-2 flex items-center">
-                <FaPhoneAlt className="text-red-600" />
-                +998 97 033 34 55
-              </p>
-              <div className="mt-15 p-4 bg-blue-800 text-amber-50">
-                <h1 className="text-3xl">Tarmoqlar</h1>
-                <div className="flex py-10 gap-10">
-                  <div className="border-2 rounded-sm py-3 px-3 text-xl">
-                    <a href="">
-                      {" "}
+              Mijozlar Uchun
+            </motion.button>
+            <motion.button
+              className={`category-button ${
+                selectedCategory === 2 ? "active" : ""
+              }`}
+              onClick={() => handleCategoryClick(2)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Ariza Beruvchilar uchun
+            </motion.button>
+          </motion.div>
+          <motion.hr className="divider" variants={itemVariants} />
+
+          {selectedCategory === 1 && (
+            <motion.div
+              className="contact-container"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div className="contact-details" variants={itemVariants}>
+                <motion.h1 className="contact-title" variants={itemVariants}>
+                  Yevro-Vent Ofisi
+                </motion.h1>
+                <motion.p className="contact-info" variants={itemVariants}>
+                  <FaLocationDot className="contact-icon" /> O'zbekiston,
+                  Toshkent sh., Yashnobod, Boysun ko'chasi, 67
+                </motion.p>
+                <motion.p className="contact-info" variants={itemVariants}>
+                  <FaPhoneAlt className="contact-icon" /> +998 97 033 34 55
+                </motion.p>
+                <motion.p className="contact-info" variants={itemVariants}>
+                  <FaPhoneAlt className="contact-icon" /> +998 97 033 34 55
+                </motion.p>
+                <motion.div className="social-links" variants={itemVariants}>
+                  <motion.h1 className="social-title" variants={itemVariants}>
+                    Tarmoqlar
+                  </motion.h1>
+                  <motion.div
+                    className="social-icons"
+                    variants={containerVariants}
+                  >
+                    <motion.a
+                      href=""
+                      className="social-icon"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.2 }}
+                    >
                       <FaFacebookF />
-                    </a>
-                  </div>
-                  <div className="border-2 rounded-sm py-3 px-3 text-xl">
-                    <a href="">
-                      {" "}
+                    </motion.a>
+                    <motion.a
+                      href=""
+                      className="social-icon"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.2 }}
+                    >
                       <FaInstagram />
-                    </a>
-                  </div>
-                  <div className="border-2 rounded-sm py-3 px-3 text-xl">
-                    <a href="">
-                      {" "}
+                    </motion.a>
+                    <motion.a
+                      href=""
+                      className="social-icon"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.2 }}
+                    >
                       <FaTelegramPlane />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="aloqa" className="w-1/2 ">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1374.6577436910584!2d69.31906942905556!3d41.28384416624742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zWWFzaG5vYm9kIFR1bWFuaSwg0KLQsNGI0LrQtdC90YIgYm95c3VuIDYw!5e0!3m2!1sru!2s!4v1665028772127!5m2!1sru!2s"
-                width="600"
-                height="450"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
-        )}
+                    </motion.a>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div className="map-container" variants={itemVariants}>
+                <motion.iframe
+                  src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1374.6577436910584!2d69.31906942905556!3d41.28384416624742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zWWFzaG5vYm9kIFR1bWFuaSwg0KLQsNGI0LrQtdC90YIgYm95c3VuIDYw!5e0!3m2!1sru!2s!4v1665028772127!5m2!1sru!2s"
+                  width="600"
+                  height="450"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="map"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                ></motion.iframe>
+              </motion.div>
+            </motion.div>
+          )}
+        </motion.div>
         {selectedCategory === 2 && (
-          <div
-            id="ariza_bg_orqa"
-            className="text-center items-center justify-center px-10 "
-          >
-            <h1 className="text-4xl pt-10">Ariza qoldirish</h1>
-            <form
-              className="flex items-center justify-center py-10"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const name = e.target.name.value;
-                const phone = e.target.phone.value;
-                const comment = e.target.comment.value;
-
-                const token = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ";
-                const chatId = "5900769240";
-                const message = `Yangi ariza:\n\nIsmi: ${name}\nTelefon: ${phone}\nIzoh: ${comment}`;
-
-                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                  }),
-                })
-                  .then((response) => {
-                    if (response.ok) {
-                      toast.success("Xabar mufaqiyatli jonatildi");
-                    } else {
-                      toast.error("Xabar yuborishda xatolik yuz berdi");
-                    }
-                  })
-                  .catch((error) => {
-                    console.error("Telegramga ulanishda xatolik:", error);
-                    toast.error("Telegram ulanishda xatolik yuz berdi");
-                  });
-              }}
+            <motion.div
+              className="max-w-130 mx-auto mt-10 p-8 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-2xl"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <div>
-                <div className="flex-col flex">
+              <motion.h1
+                className="w-full text-3xl font-extrabold mb-8 text-center text-indigo-800 tracking-wide"
+                variants={itemVariants}
+              >
+                Ariza qoldirish
+              </motion.h1>
+              {errorMessage && (
+                <motion.p
+                  className="text-red-500 font-semibold text-center mb-4"
+                  variants={itemVariants}
+                >
+                  {errorMessage}
+                </motion.p>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <motion.div variants={itemVariants}>
                   <input
-                    id="ariza_input_orqa"
                     name="name"
+                    value={form.name}
+                    onChange={handleInputChange}
                     placeholder="Isim"
                     type="text"
-                    className="rounded-sm w-120 py-2 px-6"
-                    required
+                    className={`w-full px-5 py-3 rounded-lg border-2 ${
+                      errors.name ? "border-red-500" : "border-indigo-300"
+                    } focus:outline-none focus:ring-2 ${
+                      errors.name ? "focus:ring-red-500" : "focus:ring-indigo-500"
+                    } focus:border-transparent transition duration-300 placeholder-indigo-300 text-indigo-800`}
                   />
+                </motion.div>
+                <motion.div variants={itemVariants}>
                   <input
-                    id="ariza_input_orqa"
                     name="phone"
+                    value={form.phone}
+                    onChange={handleInputChange}
                     placeholder="Telefon"
-                    type="text"
-                    className="rounded-sm w-120 py-2 px-6"
-                    required
+                    type="nuber"
+                    className={`w-full px-5 py-3 rounded-lg border-2 ${
+                      errors.phone ? "border-red-500" : "border-indigo-300"
+                    } focus:outline-none focus:ring-2 ${
+                      errors.phone ? "focus:ring-red-500" : "focus:ring-indigo-500"
+                    } focus:border-transparent transition duration-300 placeholder-indigo-300 text-indigo-800`}
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div variants={itemVariants}>
                   <textarea
-                    id="ariza_input_orqa"
                     name="comment"
+                    value={form.comment}
+                    onChange={handleInputChange}
                     placeholder="Izoh"
-                    className="rounded-sm w-120 py-5 px-6"
+                    className={`w-full px-5 py-3 rounded-lg border-2 ${
+                      errors.comment ? "border-red-500" : "border-indigo-300"
+                    } focus:outline-none focus:ring-2 ${
+                      errors.comment ? "focus:ring-red-500" : "focus:ring-indigo-500"
+                    } focus:border-transparent transition duration-300 resize-none h-36 placeholder-indigo-300 text-indigo-800`}
                   ></textarea>
-                </div>
-                <button className="py-3 px-8 bg-red-500 mt-5 rounded-sm text-amber-50">
-                  Yuborish
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <button
+                    type="submit"
+                    className="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105"
+                  >
+                    Yuborish
+                  </button>
+                </motion.div>
+              </form>
+            </motion.div>
+          )}
       </div>
     </>
   );

@@ -14,14 +14,14 @@ const Batafsil = () => {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div className="flex flex-wrap gap-4 mb-6">
       <NavLink
-        href="/"
+        to="/"
         className="text-lg sm:text-xl flex items-center text-gray-600 hover:text-gray-900 transition duration-300"
       >
         <FaChevronLeft className="text-orange-400 mr-1" />
         Asosiy
       </NavLink>
       <NavLink
-        href="/about"
+        to="/about"
         className="text-lg sm:text-xl flex items-center text-gray-600 hover:text-gray-900 transition duration-300"
       >
         <FaChevronLeft className="text-orange-400 mr-1" />
@@ -43,8 +43,8 @@ const Batafsil = () => {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">{product.title}</h1>
           <p className="text-lg sm:text-xl text-gray-700 mb-6">{product.info}</p>
         </div>
-        <NavLink href="/about" className="self-start">
-          <button className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white py-2 px-6 rounded-xl flex items-center text-lg sm:text-xl transition duration-300">
+        <NavLink to="/about" className="self-start">
+          <button className="border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white py-2 px-6 rounded-xl flex items-center text-lg sm:text-xl transition duration-300">
             <FaArrowLeft className="mr-2" />
             Qaytish
           </button>

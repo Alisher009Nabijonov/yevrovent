@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { IoLocation } from "react-icons/io5";
 import { IoStopwatch } from "react-icons/io5";
+import { FaHeadphonesAlt } from "react-icons/fa";
 import {
   FaPhone,
   FaChevronDown,
@@ -19,17 +20,31 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
+import { FiSend } from "react-icons/fi";
 
 const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [infoVisible, setInfoVisible] = useState(false);
-  const dropdownRef = useRef(null);
+  // const [infoVisible, setInfoVisible] = useState(false);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [numbber, setNumbber] = useState("");
   const [value, setValue] = useState();
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const dropdownRef = useRef(null);
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
@@ -113,19 +128,19 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       });
   };
 
-  let [bars, setBars] = useState(false); 
+  let [bars, setBars] = useState(false);
   let [bars1, setBars1] = useState(false);
 
   const toggleBars = () => {
-    setBars(true); 
+    setBars(true);
   };
 
   const toggleBarsClose = () => {
-    setBars(false); 
+    setBars(false);
   };
 
   const toggleBars1 = () => {
-    setBars1(true); 
+    setBars1(true);
   };
 
   const toggleBarsClose1 = () => {
@@ -137,8 +152,8 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
 
-    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ"; 
-    const chatId = "5900769240"; 
+    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ";
+    const chatId = "5900769240";
     const text = `Telefon raqam: ${phoneNumber}`;
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -154,7 +169,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       .then((response) => response.json())
       .then((data) => {
         toast.success("Raqam muvaffaqiyatli yuborildi!");
-        setPhoneNumber(""); 
+        setPhoneNumber("");
       })
       .catch((error) => {
         toast.error("Xatolik yuz berdi. Qayta urinib ko'ring.");
@@ -168,18 +183,111 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
     }, 1500);
   };
 
+  const [form, setForm] = useState({ name: "", phone: "", comment: "" });
+  const [errors, setErrors] = useState({
+    name: false,
+    phone: false,
+    comment: false,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    if (value.trim() !== "") {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
+    }
+  };
+
+  const handleSubmit12 = async (e) => {
+    e.preventDefault();
+
+    // Validatsiya qilish
+    const newErrors = {
+      name: form.name.trim() === "",
+      phone: form.phone.trim() === "",
+      comment: form.comment.trim() === "",
+    };
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((error) => error)) {
+      return;
+    }
+
+    // Telegram bot ma'lumotlari
+    const botToken = "7686093249:AAHrIA99271I4_uFTUk-yuehmREMjWcUqsQ"; // BotFather'dan olingan token
+    const chatId = "5900769240"; // Chat ID (kanal, guruh yoki foydalanuvchi ID'si)
+
+    const message = `
+        📝 Yangi ariza:
+        🔹 Ism: ${form.name}
+        🔹 Telefon: ${form.phone}
+        🔹 Izoh: ${form.comment}
+      `;
+
+    try {
+      // Telegramga xabar yuborish
+      const response = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+          }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.ok) {
+        toast("Arizangiz yuborildi!");
+        setForm({ name: "", phone: "", comment: "" }); // Formni tozalash
+      } else {
+        toast(
+          "Xabar yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring."
+        );
+      }
+    } catch (error) {
+      console.error("Telegram bilan ulanishda xatolik:", error);
+      toast(
+        "Xabar yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring."
+      );
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
     <div>
       <Toaster position="top-right" reverseOrder={false} />
       <header>
         <div
           id="nav_987654321234567890__a"
-          className="flex justify-between px-5  "
+          className="flex items-center justify-between px-5   "
         >
-          <div id="nav_987654321" className="flex sm:text-left">
+          <div id="nav_987654321" className="flex items-center sm:text-left">
             <p className="flex items-center justify-center sm:justify-start text-sm">
               <FaPhone className="mr-2" />
-              +998 97 003 34 55
+              <a href="tel:+998948895355">+998 97 003 34 55</a>
             </p>
             <p className="flex items-center justify-center sm:justify-start text-sm ">
               <IoStopwatch className="mr-2" />
@@ -188,7 +296,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           </div>
           <div
             id="nav_987654321"
-            className="flex flex-col sm:flex-row items-start gap-3 mt-4 sm:mt-0 relative"
+            className="flex flex-col items-center sm:flex-row  gap-3 mt-4 sm:mt-0 relative"
           >
             <p className="flex items-center text-sm">
               <IoLocation className="mr-2" />
@@ -196,60 +304,101 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
             </p>
             <div ref={dropdownRef}>
               <button
-                onClick={toggleInfo}
+                onClick={() => openModal("Product Example")}
                 className="border-2 px-4 py-1 rounded-sm text-sm"
               >
-                {t("nav2")}
+                Ariza yuborish
               </button>
-              {infoVisible && (
-                <div className=" z-99  absolute right-140 top-40 mt-2 p-6 bg-white text-black shadow-lg rounded-md w-100  transition-opacity duration-300 ease-in-out opacity-100">
-                  <div className="flex pb-6 items-center justify-between">
-                    <p className="text-2xl ">Ariza Qoldirish</p>
 
-                    <p onClick={toggleInfo} className="text-2xl cursor-pointer">
-                      X
-                    </p>
+              {isModalOpen && selectedProduct && (
+                <div
+                  id="modal_oyna_form"
+                  className="modal fixed inset-0 flex items-center justify-center  z-999 bg-opacity-50 "
+                  onClick={closeModal}
+                >
+                  <div
+                    className="modal_content bg-white p-4 rounded-lg relative w-100"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <h1 className="text-2xl mb-10">Ariza Yuborish</h1>
+                    <button
+                      className="close_modal absolute top-2 right-2  rounded-full"
+                      onClick={closeModal}
+                    >
+                      <h1 className=" cursor-pointer px-1 text-2xl ">X</h1>
+                    </button>
+
+                    <form onSubmit={handleSubmit12} className="space-y-6">
+                      <motion.div variants={itemVariants}>
+                        <input
+                          name="name"
+                          value={form.name}
+                          onChange={handleInputChange}
+                          placeholder="Isim"
+                          type="text"
+                          className={`w-full px-5 py-3 rounded-lg border-2 ${
+                            errors.name
+                              ? "border-red-500 placeholder-red-500"
+                              : "border-indigo-300"
+                          } focus:outline-none focus:ring-2 ${
+                            errors.name
+                              ? "focus:ring-red-500"
+                              : "focus:ring-indigo-500"
+                          } focus:border-transparent transition duration-300 placeholder-indigo-300 text-indigo-800`}
+                        />
+                      </motion.div>
+                      <motion.div variants={itemVariants}>
+                        <input
+                          name="phone"
+                          value={form.phone}
+                          onChange={handleInputChange}
+                          placeholder="Telefon"
+                          type="text"
+                          className={`w-full px-5 py-3 rounded-lg border-2 ${
+                            errors.phone
+                              ? "border-red-500 placeholder-red-500"
+                              : "border-indigo-300"
+                          } focus:outline-none focus:ring-2 ${
+                            errors.phone
+                              ? "focus:ring-red-500"
+                              : "focus:ring-indigo-500"
+                          } focus:border-transparent transition duration-300 placeholder-indigo-300 text-indigo-800`}
+                        />
+                      </motion.div>
+                      <motion.div variants={itemVariants}>
+                        <textarea
+                          name="comment"
+                          value={form.comment}
+                          onChange={handleInputChange}
+                          placeholder="Izoh"
+                          className={`w-full px-5 py-3 rounded-lg border-2 ${
+                            errors.comment
+                              ? "border-red-500 placeholder-red-500"
+                              : "border-indigo-300"
+                          } focus:outline-none focus:ring-2 ${
+                            errors.comment
+                              ? "focus:ring-red-500"
+                              : "focus:ring-indigo-500"
+                          } focus:border-transparent transition duration-300 resize-none h-36 placeholder-indigo-300 text-indigo-800`}
+                        ></textarea>
+                      </motion.div>
+                      <motion.div variants={itemVariants}>
+                        <button
+                          type="submit"
+                          className="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105"
+                        >
+                          Yuborish
+                        </button>
+                      </motion.div>
+                    </form>
                   </div>
-                  <form className="mt-2" onSubmit={handleSubmit}>
-                    <div className="flex flex-col space-y-2">
-                      <input
-                        required
-                        type="text"
-                        placeholder="Ismingiz"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="border rounded-md px-2 py-1"
-                      />
-                      <input
-                        required
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border rounded-md px-2 py-1"
-                      />
-                      <textarea
-                        required
-                        placeholder="Xabar"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="border rounded-md px-2 py-1"
-                      ></textarea>
-                      <button
-                        type="submit"
-                        className="bg-blue-900 text-white py-1 rounded-md"
-                      >
-                        Yuborish
-                      </button>
-                    </div>
-                  </form>
                 </div>
               )}
             </div>
           </div>
         </div>
         {/* Navbar */}
-        <div id="nav_blue_responsive_katalash" className="bg-blue-900 py-4">
+        <div id="nav_blue_responsive_katalash" className="bg-blue-900 ">
           <div className=" flex flex-wrap items-center justify-between  px-4">
             <div
               id="logo_input_btn_nav"
@@ -282,8 +431,8 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
               <NavLink to="/about" className="text-xl">
                 {t("nav5")}
               </NavLink>
-              <NavLink to="/biz" className="text-xl">
-                {t("nav7")}
+              <NavLink to="/aloqa" className="text-xl">
+                Aloqa
               </NavLink>
               <div className="relative" ref={dropdownRef}>
                 <button
@@ -306,7 +455,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                         className="p-2 hover:bg-gray-200"
                         onClick={toggleDropdown}
                       >
-                        <NavLink to="/aloqa">Aloqa</NavLink>
+                        <NavLink to="/biz">Biz haqimizda</NavLink>
                       </li>
                       <li
                         className="p-2 hover:bg-gray-200"
@@ -374,7 +523,6 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 bars1 ? "translate-x-01" : "-translate-x-full1"
               }`}
             >
-            
               <div className="rou1">
                 <input
                   type="text"
@@ -388,10 +536,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 </NavLink>
               </div>
               <div>
-                <p
-                  className="text-4xl pb-3"
-                  onClick={toggleBarsClose1}
-                >
+                <p className="text-4xl pb-3" onClick={toggleBarsClose1}>
                   x
                 </p>
               </div>
@@ -452,9 +597,9 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           className="flex items-center justify-between my-20 bg-amber-50 text-black py-6 px-6 rounded-4xl"
         >
           <div>
-            <h2 className="text-2xl">Aloqa Uchun Tel Raqam</h2>
+            <h2 className="text-2xl">Telefon Raqam qoldirish</h2>
           </div>
-          <div className="bg-yellow-400 py-2 px-8 rounded-xl">
+          <div className="bg-yellow-400  px-8 rounded-full">
             <form
               id="footer_input_btn_dav"
               className="flex"
@@ -466,26 +611,38 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 onChange={(phone) => setPhoneNumber(phone)}
                 inputStyle={{
                   borderRadius: "8px",
-                  padding: "",
                   border: "2px solid black",
                   width: "240px",
                   background: "none",
+                  border: "none",
+                }}
+                buttonStyle={{
+                  background: "none",
+                  border: "none",
+                }}
+                containerStyle={{
+                  borderRadius: "8px",
+                 
                 }}
               />
               <button type="submit" className="text-2xl cursor-pointer">
-                <BsAirplaneFill />
+                <FiSend />
               </button>
             </form>
           </div>
           <div>
             <h2>
-              Tel: <a href="tel: +998 77 324 30 09">(+998) 77 324 30 09</a>
+              <h1 className="text-xl"> Telefon:</h1>{" "}
+              <a href="tel: +998 77 324 30 09" className="flex items-center">
+                <FaHeadphonesAlt className="text-orange-400" />
+                (+998) 77 324 30 09
+              </a>
             </h2>
           </div>
         </div>
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4 mt-20">
           <div>
-          <img src={Logo} alt="Logo" className="w-32 sm:w-52" />
+            <img src={Logo} alt="Logo" className="w-32 sm:w-52" />
             {/* <h3 className="font-bold text-lg">YEВРО-VENT</h3> */}
             <p className="mt-2 text-sm">{t("nav8")}</p>
             <div className="flex space-x-4 mt-4">
@@ -497,31 +654,53 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           <div>
             <h3 className="font-bold text-lg">{t("nav9")}</h3>
             <ul className="mt-2 space-y-2 text-sm">
-              <li>Konditsionerlar</li>
-              <li>Ventilyatorlar</li>
-              <li>Isitish tizimlari</li>
-              <li>Sovutish tizimlari</li>
-              <li>Montaj ishlari</li>
+              <h1>
+                <NavLink to="/" className="text-xl">
+                  {t("nav4")}
+                </NavLink>
+              </h1>
+              <h1>
+                <NavLink to="/about" className="text-xl">
+                  {t("nav5")}
+                </NavLink>
+              </h1>
+              <h1>
+                <NavLink to="/blog" className="text-xl">
+                  Blog
+                </NavLink>
+              </h1>
             </ul>
           </div>
           <div>
             <h3 className="font-bold text-lg">{t("nav10")}</h3>
             <ul className="mt-2 space-y-2 text-sm">
-              <li>Biz haqimizda</li>
-              <li>Bog'lanish</li>
-              <li>Qaytarish siyosati</li>
-              <li>Maxfiylik siyosati</li>
-              <li>To'lov siyosati</li>
+              <h1>
+                {" "}
+                <NavLink to="/oav" className="text-xl">
+                  OAV
+                </NavLink>
+              </h1>
+              <h1>
+                {" "}
+                <NavLink to="/biz" className="text-xl">
+                  Biz haqimizda
+                </NavLink>
+              </h1>
+              <h1>
+                {" "}
+                <NavLink to="/hizmatlar" className="text-xl">
+                  Xizmatlar
+                </NavLink>
+              </h1>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-lg">{t("nav11")}</h3>
+            <h3 className="font-bold text-lg">Manzil</h3>
             <ul className="mt-2 space-y-2 text-sm">
-              <li>Yangiliklar</li>
-              <li>Xizmatlar</li>
-              <li>Bizning siyosat</li>
-              <li>Mijozlarga xizmat</li>
-              <li>Ko'p so'raladigan savollar</li>
+              <p className="mt-2 text-xl">{t("nav8")}</p>
+              <a href="tel:+998948895355" className="flex items-center">
+                Telefon raqam: (+998) 77 324 30 09
+              </a>
             </ul>
           </div>
         </div>

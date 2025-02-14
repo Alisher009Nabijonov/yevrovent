@@ -18,6 +18,7 @@ import { Autoplay } from "swiper/modules";
 
 // import required modules
 import { Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
 
 import HomeImg1 from "../assets/jvk.png";
 import HomeImg2 from "../assets/klapann.jpg";
@@ -48,6 +49,24 @@ import Hizmat2 from "../assets/hizmat2.png";
 import Hizmat3 from "../assets/hizmat3.png";
 import HomeKata from "../assets/homekata.png";
 import { Pagination } from "swiper/modules";
+import { TypeAnimation } from "react-type-animation";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+
+import { homeItem1 } from "../Malumotlar1";
+import { homeItem12 } from "../Malumotlar12";
+import { homeItem13 } from "../Malumotlar13";
+import { homeItem14 } from "../Malumotlar14";
+import { homeItem15 } from "../Malumotlar15";
+import { homeItem16 } from "../Malumotlar16";
+import { homeItem17 } from "../Malumotlar17";
+import { homeItem18 } from "../Malumotlar18";
+import { homeItem19 } from "../Malumotlar19";
+import { homeItem20 } from "../Malumotlar20";
+import { homeItem21 } from "../Malumotlar21";
+import { homeItem22 } from "../Malumotlar22";
+import { homeItem23 } from "../Malumotlar23";
+import { homeItem24 } from "../Malumotlar24";
 
 const counterValues = [65, 200, 122, 180];
 
@@ -142,384 +161,1069 @@ export default function App() {
     indexOfLastProduct
   );
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
     <>
-      <div id="home_main" className=" mx-auto px-10">
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          <SwiperSlide>
-            <div id="home_carusel" className="flex items-center px-20">
-              <div className=" mx-auto py-10">
-                <h1  className="text-4xl">Elektr bilan isitish qurilmasi UEO</h1>
-                <p className="my-10">
-                  Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                  chiqarish binolari va boshqalar
-                </p>
-                <NavLink to="/swiper/1">
-                  <button className="border-2 py-1 px-8 rounded-sm">
-                    Batafsil
-                  </button>
-                </NavLink>
-              </div>
-              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
-                <img src={HomeImg2} alt="" />
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div id="home_carusel" className="flex items-center px-20">
-              <div className=" mx-auto py-10">
-                <h1 className="text-4xl">Elektr bilan isitish qurilmasi UEO</h1>
-                <p className="my-10">
-                  Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                  chiqarish binolari va boshqalar
-                </p>
-                <NavLink to="/swiper/2">
-                  <button className="border-2 py-1 px-8 rounded-sm">
-                    Batafsil
-                  </button>
-                </NavLink>
-              </div>
-              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
-                <img src={HomeImg1} alt="" />
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div id="home_carusel" className="flex items-center px-20">
-              <div className=" mx-auto py-10">
-                <h1 className="text-4xl">Kanalli ventilyator Ulitka</h1>
-                <p className="my-10">
-                  Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi
-                  issiqlik
-                </p>
-                <NavLink to="/swiper/3">
-                  <button className="border-2 py-1 px-8 rounded-sm">
-                    Batafsil
-                  </button>
-                </NavLink>
-              </div>
-              <div id="swiper_card_salom_img_kata" className="h-96 my-10">
-                <img src={HomeImg3} alt="" />
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-
-        <div className="mx-auto">
-          <div className="flex items-center justify-between mb-4">
-            <button onClick={handleLeftClick} className="p-2 text-2xl">
-              <FaArrowLeft />
-            </button>
-            <button onClick={handleRightClick} className="p-2 text-2xl">
-              <FaArrowRight />
-            </button>
+      {/* <div id="home_main" className="home-container">
+    <Swiper navigation={true} modules={[Navigation]} className="home-swiper">
+      <SwiperSlide>
+        <div id="home_carusel" className="home-carousel">
+          <div className="carousel-content">
+            <h1 className="carousel-title">Elektr bilan isitish qurilmasi UEO</h1>
+            <p className="carousel-description">
+              Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab chiqarish binolari va boshqalar
+            </p>
+            <NavLink to="/swiper/1">
+              <button className="btn-details">Batafsil</button>
+            </NavLink>
           </div>
-          <div className="carousel-wrapper">
-            <div
-              className="carousel "
-              style={{
-                transform: `translateX(-${visibleStart *
-                  (47 / visibleCount)}%)`,
-              }}
-            >
-              {homeItem.map((item) => (
-                <div
-                  key={item.id}
-                  id="card"
-                  className="w-1/3  flex-shrink-0 mx-2 border-2 rounded-2xl items-center border-gray-400"
-                >
-                  <div className="w-60 ">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-40 h-40 object-cover "
-                    />
-                  </div>
-                  <div className="text-center w-60">
-                    <h2 className="text-2xl">{item.title}</h2>
-                    <p className="text-gray-500 my-1">(6 items)</p>
-                    <NavLink to={`information/${item.id}`}>
-                      <button className="mt-6 border-2 py-1 px-4 text-xl rounded-sm">
-                        Batafsil
-                      </button>
-                    </NavLink>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div id="swiper_card_salom_img_kata" className="carousel-image">
+            <img src={HomeImg2 || "/placeholder.svg"} alt="" />
           </div>
         </div>
-
-        <div id="home_cata_img_text" className="flex w-full ">
-          <div className="w-380 my-10">
-            <img src={HomeKata} alt="" className="w-full" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <div id="home_carusel" className="home-carousel">
+          <div className="carousel-content">
+            <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+            <p className="carousel-description">
+              Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab chiqarish binolari va boshqalar
+            </p>
+            <NavLink to="/swiper/2">
+              <button className="btn-details">Batafsil</button>
+            </NavLink>
           </div>
-          <div className="my-10">
-            <h1 className="text-4xl p-4">Yevro-vent kompaniyasi</h1>
-            <p className="text-gray-600 px-2 my-4">
-              <span className="text-black text-xl">Yevro-vent MChJ</span> 2014
-              yilda tashkil etilgan.
+          <div id="swiper_card_salom_img_kata" className="carousel-image">
+            <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div id="home_carusel" className="home-carousel">
+          <div className="carousel-content">
+            <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+            <p className="carousel-description">
+              Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik
             </p>
-            <p className="text-gray-600 px-2 my-">
-              Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
-              tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash va
-              sotishdan iborat.
+            <NavLink to="/swiper/3">
+              <button className="btn-details">Batafsil</button>
+            </NavLink>
+          </div>
+          <div id="swiper_card_salom_img_kata" className="carousel-image">
+            <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
+
+    <div className="product-carousel">
+      <div className="carousel-controls">
+        <button onClick={handleLeftClick} className="btn-arrow">
+          <FaArrowLeft />
+        </button>
+        <button onClick={handleRightClick} className="btn-arrow">
+          <FaArrowRight />
+        </button>
+      </div>
+      <div className="carousel-wrapper">
+        <div
+          className="carousel"
+          style={{
+            transform: `translateX(-${visibleStart * (47 / visibleCount)}%)`,
+          }}
+        >
+          {homeItem.map((item) => (
+            <div key={item.id}  className="product-card">
+              <div className="product-image">
+                <img src={item.img || "/placeholder.svg"} alt={item.title} />
+              </div>
+              <div className="product-info">
+                <h2 className="product-title">{item.title}</h2>
+                <p className="product-count">(6 items)</p>
+                <NavLink to={`information/${item.id}`}>
+                  <button className="btn-details">Batafsil</button>
+                </NavLink>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div id="home_cata_img_text" className="company-info">
+      <div className="company-image">
+        <img src={HomeKata || "/placeholder.svg"} alt="" />
+      </div>
+      <div className="company-text">
+        <h1 className="company-title">Yevro-vent kompaniyasi</h1>
+        <p className="company-description">
+          <span className="company-name">Yevro-vent MChJ</span> 
+          <TypeAnimation
+              sequence={[
+                "2014 yilda tashkil etilgan.",
+                1000,
+              ]}
+            
+              wrapper="span"
+              speed={80}
+              // style={{ fontSize: "2em", display: "inline-block" }}
+              repeat={Infinity}
+            />
+          
+        </p>
+        <p className="company-description">
+          Korxonaning asosiy faoliyati ventilyatsiya va konditsioner tizimlari uchun sanoat uskunalarini ishlab chiqish,
+          tayyorlash va sotishdan iborat.
+        </p>
+        <p className="company-description">
+          Ko'p yillik muvaffaqiyatli ish tajribasi bizga O'zbekiston Respublikasi bozorining eng professional
+          korxonalaridan biriga aylanish huquqini beradi. Bu esa o'z navbatida hamkorlar va iste'molchilarning
+          e'tirofini tasdiqlaydi.
+        </p>
+        <NavLink to="/biz">
+          <button className="btn-details">Batafsil</button>
+        </NavLink>
+      </div>
+    </div>
+
+    <div id="home_3ta_card" className="featured-products">
+      <div id="home_3ta_card1234567898" className="featured-product">
+        <div className="featured-product-image">
+          <img src={HomeImg2 || "/placeholder.svg"} alt="" />
+        </div>
+        <div className="featured-product-info">
+          <h2 className="featured-product-title">Elektr bilan isitish qurilmasi UEO</h2>
+          <p className="featured-product-description">
+            Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab chiqarish binolari va boshqalar
+          </p>
+          <div className="rating">
+            <input value="5" name="rating" id="star5" type="radio" />
+            <label htmlFor="star5"></label>
+            <input value="4" name="rating" id="star4" type="radio" />
+            <label htmlFor="star4"></label>
+            <input value="3" name="rating" id="star3" type="radio" />
+            <label htmlFor="star3"></label>
+            <input value="2" name="rating" id="star2" type="radio" />
+            <label htmlFor="star2"></label>
+            <input value="1" name="rating" id="star1" type="radio" />
+            <label htmlFor="star1"></label>
+          </div>
+          <NavLink to="/about">
+            <button className="btn-category">Toifalar</button>
+          </NavLink>
+        </div>
+      </div>
+      <div id="home_3ta_card12345678987654321234" className="featured-product-group">
+        <div id="home_3ta_card1234567898" className="featured-product-small">
+          <div className="featured-product-image-small">
+            <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="featured-product-info-small">
+            <h2 className="featured-product-title-small">Kanalli ventilyator Ulitka</h2>
+            <p className="featured-product-description-small">
+            Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik
             </p>
-            {/* <p className="text-gray-600 px-2 my-4">Bizning kompaniya birinchilardan bo'lib shamollatish uskunalari ishlab chiqarishni o'zlashtirdi va hozirda O'zbekiston Respublikasi bozorida yetakchi ishlab chiqaruvchilardan biri hisoblanadi.</p> */}
-            <p className="text-gray-600 px-2 my-2">
-              Ko'p yillik muvaffaqiyatli ish tajribasi bizga O'zbekiston
-              Respublikasi bozorining eng professional korxonalaridan biriga
-              aylanish huquqini beradi. Bu esa o'z navbatida hamkorlar va
-              iste'molchilarning e'tirofini tasdiqlaydi.
-            </p>
-            <NavLink to="/biz">
-              <button className="border-2 rounded-xl py-1 px-6 mt-8 border-gray-400">
-                Batafsil
-              </button>
+            <NavLink to="/about">
+              <button className="btn-category">Toifalar</button>
             </NavLink>
           </div>
         </div>
+        <div id="home_3ta_card1234567898" className="featured-product-small">
+          <div className="featured-product-image-small">
+            <img src={HomeImg6 || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="featured-product-info-small">
+            <h2 className="featured-product-title-small">Qayta yo‘nalgan to‘g‘ri burchakli klapan </h2>
+            <p className="featured-product-description-small">
+            Shamollatish tizimlari uchun qayta yo‘nalgan to‘g‘ri burchakli klapanlar
+            </p>
+            <NavLink to="/about">
+              <button className="btn-category">Toifalar</button>
+            </NavLink>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <div
-          id="home_3ta_card"
-          className="flex items-center  mx-auto justify-between mb-20"
-        >
-          <div
-            id="home_3ta_card1234567898"
-            className="h-114 w-190 flex border-2 p-6  rounded-sm border-gray-400"
-          >
-            <div>
-              <img src={HomeImg1} alt="" className="" />
-            </div>
-            <div>
-              <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
-              <p className="my-12 text-1xl">
-                Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                chiqarish binolari va boshqalar
+    <div className="stats-section">
+      <div className="stats-container">
+        {counterValues.map((_, index) => (
+          <div className="stat-card" key={index}>
+            <h1 className="stat-icon">
+              {index === 0 ? (
+                <i className="fa-solid fa-gears"></i>
+              ) : index === 1 ? (
+                <i className="fa-solid fa-hourglass-half"></i>
+              ) : index === 2 ? (
+                <i className="fa-solid fa-book"></i>
+              ) : (
+                <i className="fa-solid fa-industry"></i>
+              )}
+            </h1>
+            <div className="stat-info">
+              <p className="stat-count">{counts[index]}</p>
+              <p className="stat-description">
+                {index === 0 && "Yildan beri bozorda"}
+                {index === 1 && "Hususiy ishlab chiqarish"}
+                {index === 2 && "Nemis komponentlari"}
+                {index === 3 && "ISO bo'yicha ishlab chiqarish"}
               </p>
-              <div className="flex ">
-                <div class="rating">
-                  <input value="5" name="rating" id="star5" type="radio" />
-                  <label for="star5"></label>
-                  <input value="4" name="rating" id="star4" type="radio" />
-                  <label for="star4"></label>
-                  <input value="3" name="rating" id="star3" type="radio" />
-                  <label for="star3"></label>
-                  <input value="2" name="rating" id="star2" type="radio" />
-                  <label for="star2"></label>
-                  <input value="1" name="rating" id="star1" type="radio" />
-                  <label for="star1"></label>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="services-section">
+      <h1 className="services-title">Xizmatlar</h1>
+      <div id="home_3ta_card_2_chisi" className="services-container">
+        <div className="service-card">
+          <div className="service-image">
+            <img src={Hizmat1 || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="service-info">
+            <h2 className="service-title">Bizning Hizmatdan</h2>
+            <p className="service-description">Bizning hizmatlarimiz</p>
+          </div>
+        </div>
+        <div className="service-card">
+          <div className="service-image">
+            <img src={Hizmat2 || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="service-info">
+            <h2 className="service-title">Bizning Hizmatdan</h2>
+            <p className="service-description">Bizning hizmatlarimiz</p>
+          </div>
+        </div>
+        <div className="service-card">
+          <div className="service-image">
+            <img src={Hizmat3 || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="service-info">
+            <h2 className="service-title">Bizning Hizmatdan</h2>
+            <p className="service-description">Bizning hizmatlarimiz</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="clients-section">
+      <div>
+        <h1 className="clients-title">Bizga ishonch bildirgan mijozlarimiz</h1>
+      </div>
+      <div className="clients-carousel">
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={20}
+          slidesPerView={5}
+          loop={true}
+          autoplay={{
+            delay: 1,
+            disableOnInteraction: false,
+          }}
+          speed={2000}
+        >
+          {images.map((img, index) => (
+            <SwiperSlide key={index} className="client-slide">
+              <img src={img || "/placeholder.svg"} alt={`Carousel ${index + 1}`} className="client-logo" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+
+    <div className="new-categories-section">
+      <div className="new-categories-header">
+        <h2 className="new-categories-title">Yangi Toifalar</h2>
+        <NavLink to="/about">
+          <h2 className="view-categories">Toifalarni Korish</h2>
+        </NavLink>
+      </div>
+    </div>
+
+    <div  className="product-list">
+      {currentProducts.map((product, index) => (
+        <div key={index} className="product-item">
+          <div className="product-image">
+            <img src={product.img || "/placeholder.svg"} alt="" />
+          </div>
+          <div className="product-info">
+            <h2 className="product-title">{product.title}</h2>
+            <p className="product-description">{product.description}</p>
+            <NavLink to="/about">
+              <button className="btn-view-category">Toifani Korish</button>
+            </NavLink>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="pagination">
+      <button onClick={() => setCurrentPage(1)} className={`pagination-button ${currentPage === 2 ? "active" : ""}`}><FaArrowLeft /></button>
+      <button onClick={() => setCurrentPage(1)} className={`pagination-button ${currentPage === 1 ? "active" : ""}`}>
+        1
+      </button>
+      <button onClick={() => setCurrentPage(2)} className={`pagination-button ${currentPage === 2 ? "active" : ""}`}>
+        2
+      </button>
+      <button onClick={() => setCurrentPage(2)} className={`pagination-button ${currentPage === 1 ? "active" : ""}`}><FaArrowRight /></button>
+    </div>
+  </div> */}
+
+      <motion.div
+        id="home_main"
+        className="home-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants}>
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            className="home-swiper"
+          >
+            <SwiperSlide>
+              <div id="home_carusel" className="home-carousel">
+                <div className="carousel-content">
+                  <h1 className="carousel-title">
+                    Elektr bilan isitish qurilmasi UEO
+                  </h1>
+                  <p className="carousel-description">
+                    Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab
+                    chiqarish binolari va boshqalar
+                  </p>
+                  <NavLink to="/swiper/1">
+                    <button className="btn-details">Batafsil</button>
+                  </NavLink>
+                </div>
+                <div id="swiper_card_salom_img_kata" className="carousel-image">
+                  <img src={HomeImg2 || "/placeholder.svg"} alt="" />
                 </div>
               </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div id="home_carusel" className="home-carousel">
+                <div className="carousel-content">
+                  <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+                  <p className="carousel-description">
+                    Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab
+                    chiqarish binolari va boshqalar
+                  </p>
+                  <NavLink to="/swiper/2">
+                    <button className="btn-details">Batafsil</button>
+                  </NavLink>
+                </div>
+                <div id="swiper_card_salom_img_kata" className="carousel-image">
+                  <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div id="home_carusel" className="home-carousel">
+                <div className="carousel-content">
+                  <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+                  <p className="carousel-description">
+                    Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV
+                    tipidagi issiqlik
+                  </p>
+                  <NavLink to="/swiper/3">
+                    <button className="btn-details">Batafsil</button>
+                  </NavLink>
+                </div>
+                <div id="swiper_card_salom_img_kata" className="carousel-image">
+                  <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </motion.div>
 
-              <NavLink to="/about">
-                <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
-                  Toifalar
-                </button>
+        <motion.div className="product-carousel" variants={itemVariants}>
+          <div className="product-carousel">
+            <div className="carousel-controls">
+              <button onClick={handleLeftClick} className="btn-arrow">
+                <FaArrowLeft />
+              </button>
+              <button onClick={handleRightClick} className="btn-arrow">
+                <FaArrowRight />
+              </button>
+            </div>
+            <div className="carousel-wrapper ">
+              <div className="flex ">
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (56 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem1.map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem12.length} Malumot)
+                        </p>
+                        <NavLink to={`batafsil/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* <div
+                  className="carousel"
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem13.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem13.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem14.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem14.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem15.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem15.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div> */}
+{/* 
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem16.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem16.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem17.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem17.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem18.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem18.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div> */}
+
+                {/* <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem19.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem19.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem20.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem20.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem21.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem21.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem22.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem22.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (250 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem23.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem23.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="carousel "
+                  style={{
+                    transform: `translateX(-${visibleStart *
+                      (100 / visibleCount)}%)`,
+                  }}
+                >
+                  {homeItem24.slice(0, 1).map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={item.img || "/placeholder.svg"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <h2 className="product-title">{item.title}</h2>
+                        <p className="product-count">
+                          ({homeItem24.length} Malumot)
+                        </p>
+                        <NavLink to={`information/${item.id}`}>
+                          <button className="btn-details">Batafsil</button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  ))}
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          // id="home_cata_img_text"
+          // className="company-info"
+          variants={itemVariants}
+        >
+          <div id="home_cata_img_text" className="company-info">
+            <div className="company-image">
+              <img src={HomeKata || "/placeholder.svg"} alt="" />
+            </div>
+            <div className="company-text">
+              <h1 className="company-title">Yevro-vent kompaniyasi</h1>
+              <p className="company-description">
+                <span className="company-name">Yevro-vent MChJ</span>
+                <TypeAnimation
+                  sequence={["2014 yilda tashkil etilgan.", 1000]}
+                  wrapper="span"
+                  speed={80}
+                  // style={{ fontSize: "2em", display: "inline-block" }}
+                  repeat={Infinity}
+                />
+              </p>
+              <p className="company-description">
+                Korxonaning asosiy faoliyati ventilyatsiya va konditsioner
+                tizimlari uchun sanoat uskunalarini ishlab chiqish, tayyorlash
+                va sotishdan iborat.
+              </p>
+              <p className="company-description">
+                Ko'p yillik muvaffaqiyatli ish tajribasi bizga O'zbekiston
+                Respublikasi bozorining eng professional korxonalaridan biriga
+                aylanish huquqini beradi. Bu esa o'z navbatida hamkorlar va
+                iste'molchilarning e'tirofini tasdiqlaydi.
+              </p>
+              <NavLink to="/biz">
+                <button className="btn-details">Batafsil</button>
               </NavLink>
             </div>
           </div>
-          <div id="home_3ta_card12345678987654321234" className="w-190">
-            <div
-              id="home_3ta_card1234567898"
-              className="h-56 flex border-2 p-6 rounded-sm border-gray-400"
-            >
-              <div>
-                <img src={HomeImg1} alt="" />
+        </motion.div>
+
+        <motion.div
+          // id="home_3ta_card"
+          // className="featured-products"
+          variants={itemVariants}
+        >
+          <div id="home_3ta_card" className="featured-products">
+            <div id="home_3ta_card1234567898" className="featured-product">
+              <div className="featured-product-image">
+                <img src={HomeImg2 || "/placeholder.svg"} alt="" />
               </div>
-              <div>
-                <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
-                <p className="my-5">
-                  Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
+              <div className="featured-product-info">
+                <h2 className="featured-product-title">
+                  Elektr bilan isitish qurilmasi UEO
+                </h2>
+                <p className="featured-product-description">
+                  Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab
+                  chiqarish binolari va boshqalar
                 </p>
+                <div className="rating">
+                  <input value="5" name="rating" id="star5" type="radio" />
+                  <label htmlFor="star5"></label>
+                  <input value="4" name="rating" id="star4" type="radio" />
+                  <label htmlFor="star4"></label>
+                  <input value="3" name="rating" id="star3" type="radio" />
+                  <label htmlFor="star3"></label>
+                  <input value="2" name="rating" id="star2" type="radio" />
+                  <label htmlFor="star2"></label>
+                  <input value="1" name="rating" id="star1" type="radio" />
+                  <label htmlFor="star1"></label>
+                </div>
                 <NavLink to="/about">
-                  <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
-                    Toifalar
-                  </button>
+                  <button className="btn-category">Toifalar</button>
                 </NavLink>
               </div>
             </div>
             <div
-              id="home_3ta_card1234567898"
-              className="h-56 flex border-2 my-10 p-6 rounded-sm border-gray-400 "
+              id="home_3ta_card12345678987654321234"
+              className="featured-product-group"
             >
-              <div>
-                <img src={HomeImg1} alt="" />
+              <div
+                id="home_3ta_card1234567898"
+                className="featured-product-small"
+              >
+                <div className="featured-product-image-small">
+                  <img src={HomeImg3 || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="featured-product-info-small">
+                  <h2 className="featured-product-title-small">
+                    Kanalli ventilyator Ulitka
+                  </h2>
+                  <p className="featured-product-description-small">
+                    Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV
+                    tipidagi issiqlik
+                  </p>
+                  <NavLink to="/about">
+                    <button className="btn-category">Toifalar</button>
+                  </NavLink>
+                </div>
               </div>
-              <div>
-                <h2 className="text-2xl">Elektr bilan isitish qurilmasi UEO</h2>
-                <p className="my-5">
-                  Elektr isitish qurilmasi ( issiqlik to‘pi) omborxona, ishlab
-                </p>
-                <NavLink to="/about">
-                  <button className="text-3xl border-2 rounded-xl py-1 px-6 border-gray-400">
-                    Toifalar
-                  </button>
-                </NavLink>
+              <div
+                id="home_3ta_card1234567898"
+                className="featured-product-small"
+              >
+                <div className="featured-product-image-small">
+                  <img src={HomeImg6 || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="featured-product-info-small">
+                  <h2 className="featured-product-title-small">
+                    Qayta yo‘nalgan to‘g‘ri burchakli klapan{" "}
+                  </h2>
+                  <p className="featured-product-description-small">
+                    Shamollatish tizimlari uchun qayta yo‘nalgan to‘g‘ri
+                    burchakli klapanlar
+                  </p>
+                  <NavLink to="/about">
+                    <button className="btn-category">Toifalar</button>
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mb-10 rounded-2xl">
-          <div className="my-10">
-            <div
-              id="status"
-              className="flex text-center justify-between w-full rounded-xl py-5 px-4"
-            >
+        <motion.div className="stats-section" variants={itemVariants}>
+          <div className="stats-section">
+            <div className="stats-container">
               {counterValues.map((_, index) => (
-                <div
-                  className="af_card text-center flex  items-center"
-                  key={index}
-                >
-                  <h1 className="text-5xl mr-4">
+                <div className="stat-card" key={index}>
+                  <h1 className="stat-icon">
                     {index === 0 ? (
-                      <i class="fa-solid fa-gears text-red-400"></i>
+                      <i className="fa-solid fa-gears"></i>
                     ) : index === 1 ? (
-                      <i class="fa-solid fa-hourglass-half text-blue-800"></i>
+                      <i className="fa-solid fa-hourglass-half"></i>
                     ) : index === 2 ? (
-                      <i class="fa-solid fa-book text-blue-600"></i>
+                      <i className="fa-solid fa-book"></i>
                     ) : (
-                      <i class="fa-solid fa-industry text-green-500"></i>
+                      <i className="fa-solid fa-industry"></i>
                     )}
                   </h1>
-                  <div className="">
-                    <p className="text-3xl text-start">{counts[index]}</p>
-                    <p className="text-sm">
+                  <div className="stat-info">
+                    <p className="stat-count">{counts[index]}</p>
+                    <p className="stat-description">
                       {index === 0 && "Yildan beri bozorda"}
                       {index === 1 && "Hususiy ishlab chiqarish"}
                       {index === 2 && "Nemis komponentlari"}
-                      {index === 3 && "ISO bo‘yicha ishlab chiqarish"}
+                      {index === 3 && "ISO bo'yicha ishlab chiqarish"}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div>
-          <h1 className="text-4xl text-center mt-20">Xizmatlar</h1>
-          <div id="home_3ta_card_2_chisi" className="flex items-center">
-            <div className="flex border-2 border-gray-400 rounded-xl py-4 px-4">
-              <div>
-                <img className="rounded-xl w-70 h-45" src={Hizmat1} alt="" />
+        <motion.div className="services-section" variants={itemVariants}>
+          <motion.h1 className="services-title" variants={itemVariants}>
+            Xizmatlar
+          </motion.h1>
+          <div className="services-section">
+            <div id="home_3ta_card_2_chisi" className="services-container">
+              <div className="service-card">
+                <div className="service-image">
+                  <img src={Hizmat1 || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="service-info">
+                  <h2 className="service-title">Bizning Hizmatdan</h2>
+                  <p className="service-description">Bizning hizmatlarimiz</p>
+                </div>
               </div>
-              <div className="p-3">
-                <h2 className="text-2xl mb-4 ">Bizning Hizmatdan </h2>
-                <p>Bizning hizmatlarimiz </p>
+              <div className="service-card">
+                <div className="service-image">
+                  <img src={Hizmat2 || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="service-info">
+                  <h2 className="service-title">Bizning Hizmatdan</h2>
+                  <p className="service-description">Bizning hizmatlarimiz</p>
+                </div>
               </div>
-            </div>
-            <div className="flex border-2 border-gray-400 rounded-xl  py-4 px-4">
-              <div>
-                <img className="rounded-xl w-70 h-45" src={Hizmat2} alt="" />
-              </div>
-              <div className="p-3">
-                <h2 className="text-2xl mb-4">Bizning Hizmatdan </h2>
-                <p>Bizning hizmatlarimiz </p>
-              </div>
-            </div>
-            <div className="flex border-2 border-gray-400 rounded-xl  py-4 px-4">
-              <div>
-                <img className="rounded-xl w-70 h-45" src={Hizmat3} alt="" />
-              </div>
-              <div className="p-3">
-                <h2 className="text-2xl mb-4">Bizning Hizmatdan </h2>
-                <p>Bizning hizmatlarimiz </p>
+              <div className="service-card">
+                <div className="service-image">
+                  <img src={Hizmat3 || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="service-info">
+                  <h2 className="service-title">Bizning Hizmatdan</h2>
+                  <p className="service-description">Bizning hizmatlarimiz</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="jjjjjjjj">
-          <div>
-            <h1 className="text-3xl text-center mt-20">
-              Bizga ishonch bildirgan mijozlarimiz
-            </h1>
+        <motion.div className="clients-section" variants={itemVariants}>
+          <div className="clients-section">
+            <div>
+              <h1 className="clients-title">
+                Bizga ishonch bildirgan mijozlarimiz
+              </h1>
+            </div>
+            <div className="clients-carousel">
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={20}
+                slidesPerView={5}
+                loop={true}
+                autoplay={{
+                  delay: 1,
+                  disableOnInteraction: false,
+                }}
+                speed={2000}
+              >
+                {images.map((img, index) => (
+                  <SwiperSlide key={index} className="client-slide">
+                    <img
+                      src={img || "/placeholder.svg"}
+                      alt={`Carousel ${index + 1}`}
+                      className="client-logo"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
-          <div className="my-20 mt-20 flex items-baseline gap-10 h-30 ">
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={20}
-              slidesPerView={5}
-              loop={true}
-              autoplay={{
-                delay: 1,
-                disableOnInteraction: false,
-              }}
-              speed={2000}
+        </motion.div>
+
+        <motion.div className="new-categories-section" variants={itemVariants}>
+          <div className="new-categories-section">
+            <div className="new-categories-header">
+              <h2 className="new-categories-title">Yangi Toifalar</h2>
+              <NavLink to="/about">
+                <h2 className="view-categories">Toifalarni Korish</h2>
+              </NavLink>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div className="product-list" variants={itemVariants}>
+          <div className="product-list">
+            {currentProducts.map((product, index) => (
+              <div key={index} className="product-item">
+                <div className="product-image">
+                  <img src={product.img || "/placeholder.svg"} alt="" />
+                </div>
+                <div className="product-info">
+                  <h2 className="product-title">{product.title}</h2>
+                  <p className="product-description">{product.description}</p>
+                  <NavLink to="/about">
+                    <button className="btn-view-category">
+                      Toifani Korish
+                    </button>
+                  </NavLink>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div className="pagination" variants={itemVariants}>
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage(1)}
+              className={`pagination-button ${
+                currentPage === 2 ? " active" : ""
+              }`}
             >
-              {images.map((img, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="flex items-center gap-30 justify-center "
-                >
-                  <img
-                    src={img}
-                    alt={`Carousel ${index + 1}`}
-                    className="w-40 h-40 object-contain flex mx-10 "
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-
-        <div className="flex justify-between my-10">
-          <div>
-            <h2 className="text-3xl mt-20">Yangi Toifalar</h2>
-          </div>
-          <div>
-            <NavLink to="/about">
-              <h2 className="text-3xl mt-20">Toifalarni Korish</h2>
-            </NavLink>
-          </div>
-        </div>
-
-        <div id="home_pagination_page" className="flex  space-y-4">
-          {currentProducts.map((product, index) => (
-            <div
-              key={index}
-              className="flex py-3 px-3 border-2 rounded-xl border-gray-400"
+              <IoIosArrowBack />
+            </button>
+            <button
+              onClick={() => setCurrentPage(1)}
+              className={`pagination-button ${
+                currentPage === 1 ? "active" : ""
+              }`}
             >
-              <div>
-                <img
-                  src={product.img || "/placeholder.svg"}
-                  alt=""
-                  className="h-70 w-300 rounded-xl"
-                />
-              </div>
-              <div>
-                <h2 className="text-3xl mb-6">{product.title}</h2>
-                <p className="mb-4">{product.description}</p>
-                <NavLink to="/about">
-                  <button className="text-3xl border-2 py-1 px-6 rounded-xl border-gray-400">
-                    Toifani Korish
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center space-x-4 mt-4">
-          <button
-            onClick={() => setCurrentPage(1)}
-            className={`px-4 py-2 border rounded ${
-              currentPage === 1 ? "bg-gray-200" : ""
-            }`}
-          >
-            1
-          </button>
-          <button
-            onClick={() => setCurrentPage(2)}
-            className={`px-4 py-2 border rounded ${
-              currentPage === 2 ? "bg-gray-200" : ""
-            }`}
-          >
-            2
-          </button>
-        </div>
-      </div>
+              1
+            </button>
+            <button
+              onClick={() => setCurrentPage(2)}
+              className={`pagination-button ${
+                currentPage === 2 ? "active" : ""
+              }`}
+            >
+              2
+            </button>
+            <button
+              onClick={() => setCurrentPage(2)}
+              className={`pagination-button ${
+                currentPage === 1 ? "active" : ""
+              }`}
+            >
+              <IoIosArrowForward />
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
     </>
   );
 }

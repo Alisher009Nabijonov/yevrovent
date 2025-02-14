@@ -156,7 +156,7 @@ function App() {
           )}
         </button>
         {isModalOpen && (
-          <div className="fixed inset-0 bg-opacity-50 flex justify-end  items-center z-40">
+          <div className="fixed inset-0 bg-opacity-50 flex justify-end  items-center z-40 pr-10">
             <ChatBot steps={steps} />
           </div>
         )}
