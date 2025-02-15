@@ -502,21 +502,22 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
               </Dropdown> */}
             </nav>
 
-            <i
-              id="bars"
-              className="cursor-pointer text-xl bars text-white"
-              onClick={toggleBars}
-            >
-              <FaBarsStaggered />
-            </i>
-            <i
-              id="bars"
-              className="cursor-pointer text-xl bars text-white"
-              onClick={toggleBars1}
-            >
-              <FaSearch />
-            </i>
-
+            <div className="flex items-center">
+              <i
+                id="bars"
+                className="cursor-pointer text-xl bars text-white mr-3"
+                onClick={toggleBars1}
+              >
+                <FaSearch />
+              </i>
+              <i
+                id="bars"
+                className="cursor-pointer text-xl bars text-white"
+                onClick={toggleBars}
+              >
+                <FaBarsStaggered />
+              </i>
+            </div>
             <div
               id="fixed1"
               className={`fixed1 flex items-center top-0 left-0 h-25 w-full bg-blue-900 text-white transition-transform duration-300 ${
@@ -583,7 +584,12 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 <NavLink to="/blog" onClick={toggleBarsClose}>
                   Blog
                 </NavLink>
-              </h1>
+                </h1>
+                <h1 id="bars_text" className="text-white text-xl px-5 py-2">
+                <NavLink to="/saqlanganlar" className="text-xl">
+                  Saqlanganlar
+                </NavLink>
+                </h1>
             </div>
           </div>
         </div>
@@ -594,18 +600,22 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
       <footer className="bg-blue-950 text-white py-10">
         <div
           id="salom"
-          className="flex items-center justify-between my-20 bg-amber-50 text-black py-6 px-6 rounded-4xl"
+          className=" flex items-center justify-between my-20 bg-amber-50 text-black py-6 px-6 rounded-4xl"
         >
           <div>
             <h2 className="text-2xl">Telefon Raqam qoldirish</h2>
           </div>
-          <div className="bg-yellow-400  px-8 rounded-full">
+          <div
+            id="yellow_card_form"
+            className="bg-yellow-400  px-8 rounded-full"
+          >
             <form
               id="footer_input_btn_dav"
               className="flex"
               onSubmit={handleSubmit1}
             >
               <PhoneInput
+                id="phoneinput_footer"
                 country={"uz"}
                 value={phoneNumber}
                 onChange={(phone) => setPhoneNumber(phone)}
@@ -622,7 +632,6 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 }}
                 containerStyle={{
                   borderRadius: "8px",
-                 
                 }}
               />
               <button type="submit" className="text-2xl cursor-pointer">
@@ -631,7 +640,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
             </form>
           </div>
           <div>
-            <h2>
+            <h2 className="tel_number_tel_string">
               <h1 className="text-xl"> Telefon:</h1>{" "}
               <a href="tel: +998 77 324 30 09" className="flex items-center">
                 <FaHeadphonesAlt className="text-orange-400" />

@@ -244,7 +244,7 @@ const About = ({ handleSelectCard }) => {
             id="toifa_card_cata_oraptur_div"
             className="w-full px-10 py-5 flex flex-col"
           >
-            <div className="w-full flex justify-between">
+            <div id="mahsulot_holadi_va_search" className="w-full flex justify-between items-center pr-5">
               <div className="f-full text-start">
                 <div
                   id="grid_list_link"
@@ -271,7 +271,7 @@ const About = ({ handleSelectCard }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-1/2">
+              <div id="toifa_search_btn_form" className="w-1/2 ">
                 <form
                   className="flex w-full"
                   onSubmit={(e) => {
@@ -313,7 +313,7 @@ const About = ({ handleSelectCard }) => {
                           <img
                             src={item.img || "/placeholder.svg"}
                             alt={item.title}
-                            className=" pl-15 object-cover flex items-cems-items-startify-center"
+                            className="sssssssss pl-15 object-cover flex items-cems-items-startify-center"
                           />
                         </div>
                         <div>

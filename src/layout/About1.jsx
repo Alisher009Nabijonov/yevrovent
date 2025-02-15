@@ -211,47 +211,54 @@ const About = ({ handleSelectCard }) => {
           </div>
         </div>
         <div id="toifa_card_cata_oraptur_div" className="w-full px-10 py-8">
-          <div className="flex justify-between">
-            <div id="grid_list_link" className="flex items-center">
-              <div>
-                <h2 className="text-xl my-3">Malumot holati:</h2>
-              </div>
-              <div>
-                <NavLink to="/about">
-                  <h2>
-                    <BsFillGrid3X3GapFill />
-                  </h2>
-                </NavLink>
-              </div>
-              <div>
-                <NavLink to="/about1">
-                  <h2>
-                    <FaListUl />
-                  </h2>
-                </NavLink>
+          <div id="mahsulot_holadi_va_search" className="w-full flex justify-between items-center pr-5">
+            <div className="f-full text-start">
+              <div
+                id="grid_list_link"
+                className="flex items-center w-full text-start"
+              >
+                <div className="text-center">
+                  <h2 className="text-xl my-3 text-center">Malumot holati:</h2>
+                </div>
+                <div>
+                  <NavLink to="/about">
+                    <h2>
+                      <BsFillGrid3X3GapFill />
+                    </h2>
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/about1">
+                    <h2>
+                      <FaListUl />
+                    </h2>
+                  </NavLink>
+                </div>
               </div>
             </div>
-            <form
-              className="flex w-1/2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSearch();
-              }}
-            >
-              <input
-                type="search"
-                placeholder="Qidiruv"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full border-2 border-gray-400 py-2 px-2 rounded-xl bg-amber-50"
-              />
-              <button
-                type="submit"
-                className="bg-blue-800 cursor-pointer rounded-xl py-2 border-gray-400 px-6 text-amber-50 text-2xl"
+            <div id="toifa_search_btn_form"  className="w-1/2">
+              <form
+                className="flex w-full"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSearch();
+                }}
               >
-                <IoSearchSharp />
-              </button>
-            </form>
+                <input
+                  type="search"
+                  placeholder="Qidiruv"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full border-2 border-gray-400 py-2 px-2 rounded-xl bg-amber-50"
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-800 cursor-pointer rounded-xl py-2 border-gray-400 px-6 text-amber-50 text-2xl"
+                >
+                  <IoSearchSharp />
+                </button>
+              </form>
+            </div>
           </div>
 
           {selectedCategory === 1 && (
@@ -262,7 +269,7 @@ const About = ({ handleSelectCard }) => {
                   <div
                     key={item.id}
                     id="card1"
-                    className="flex flex-col md:flex-row items-start bg-white shadow-md rounded-lg my-4 p-4 transition-shadow duration-300 ease-in-out hover:shadow-lg"
+                    className="toifalar1_card1 flex flex-col md:flex-row items-start bg-white shadow-md rounded-lg my-4 p-4 transition-shadow duration-300 ease-in-out hover:shadow-lg"
                   >
                     <div className="w-full md:w-1/3 mb-4 md:mb-0 md:mr-4">
                       <img

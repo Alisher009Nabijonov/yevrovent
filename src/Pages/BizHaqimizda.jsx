@@ -29,7 +29,7 @@ const BizHaqimizda = () => {
   };
 
   return (
-    <>
+    < >
       <motion.div
         initial="hidden"
         animate="visible"
@@ -154,11 +154,11 @@ const BizHaqimizda = () => {
           >
             Xizmatlar
           </motion.h1>
-          <div className="services-section">
+          <div className="services-section px-5">
             <div id="home_3ta_card_2_chisi" className="services-container">
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat1 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat1} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>
@@ -167,7 +167,7 @@ const BizHaqimizda = () => {
               </div>
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat2 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat2} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>
@@ -176,7 +176,7 @@ const BizHaqimizda = () => {
               </div>
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat3 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat3} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>

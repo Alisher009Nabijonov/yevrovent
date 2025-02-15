@@ -3,10 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 } */
- body{
+body {
   max-width: 1469px;
   margin: 0 auto;
- }
+}
 .rou {
   width: 280px;
   background-color: #fff;
@@ -144,7 +144,7 @@
   object-fit: cover;
 }
 .carousel {
-  width:900% !important;
+  width: 900% !important;
   display: flex;
   transition: transform 0.5s ease-in-out;
   will-change: transform;
@@ -202,12 +202,12 @@ input[type="number"] {
   background-color: #fff;
 }
 @media (max-width: 900px) {
-  .carousel{
+  .carousel {
     width: 30%;
   }
-  .product-card{
-flex-direction: column;
-height: 400px;
+  .product-card {
+    flex-direction: column;
+    height: 400px;
   }
   .product-image {
     height: 100px;
@@ -292,9 +292,8 @@ height: 400px;
   }
   #nav_987654321 {
     flex-direction: column-reverse;
-   
   }
-  
+
   #toifalat1 {
     flex-direction: column;
   }
@@ -305,7 +304,14 @@ height: 400px;
     grid-template-columns: repeat(2, 4fr);
   }
   #salom {
+    display: flex;
+    align-items: start;
     flex-direction: column;
+  }
+  .tel_number_tel_string{
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
   #nav_colect_123456 a {
     font-size: 15px;
@@ -467,6 +473,31 @@ height: 400px;
   color: #fff !important;
 }
 @media (max-width: 550px) {
+  .yellow_card_form{
+    width: 100%;
+  }
+  #yellow_card_form {
+    width: 100%;
+    background: none;
+    display: flex;
+  }
+#nav_blue_responsive_katalash{
+  margin-top: -10px;
+  padding: 2px 0;
+}
+
+  #mahsulot_holadi_va_search{
+    flex-direction: column-reverse;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+  }
+  #grid_list_link{
+    width: 100%;
+  }
+  #toifa_search_btn_form{
+    width: 100%;
+  }
   #nav_987654321234567890__a {
     display: none;
   }
@@ -510,7 +541,6 @@ height: 400px;
     font-size: 16px;
   }
   #home_main {
-    padding: 0;
   }
 }
 #status {
@@ -528,7 +558,11 @@ height: 400px;
     grid-template-columns: repeat(1, 6fr);
   }
   #toifa_card_cata img {
-    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 65%;
   }
   #qqqqqq {
     flex-direction: column;
@@ -637,8 +671,6 @@ height: 400px;
   .rou {
     display: none;
   }
-
-
 }
 .rou1 {
   width: 88%;
@@ -654,9 +686,6 @@ height: 400px;
   margin: 0;
   width: 100%;
 }
-
-
-
 
 .home-container {
   margin: 0 auto;
@@ -748,7 +777,6 @@ height: 400px;
   transition: background-color 0.3s ease;
   margin: 0 10px;
   position: relative;
-  
 }
 
 .btn-arrow:hover {
@@ -781,7 +809,6 @@ height: 400px;
 
 .product-card:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-
 }
 
 .product-image {
@@ -822,7 +849,7 @@ height: 400px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.company-info img{
+.company-info img {
   border-radius: 10px;
 }
 
@@ -988,12 +1015,14 @@ height: 400px;
   display: flex;
   gap: 35px;
 }
-.stat-card i{
-  font-size: 48px;
+.stat-card i {
+  font-size: 53px;
 }
-
+#index-icon-number {
+  font-size: 39px;
+}
 .stat-icon {
-  display: flex; 
+  display: flex;
   align-items: center;
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -1196,10 +1225,6 @@ height: 400px;
   color: white;
 }
 
-
-
-
-
 @media screen and (max-width: 1200px) {
   .home-container {
     padding: 15px;
@@ -1276,9 +1301,16 @@ height: 400px;
     flex: 0 0 100%;
   }
 }
+@media (max-width: 767px) {
+  .toifalar1_card1 img{
+    width: 100px;
+  }
+
+ 
+}
 
 @media screen and (max-width: 576px) {
-  .carousel{
+  .carousel {
     width: 20% !important;
   }
   .carousel-title {
@@ -1318,7 +1350,6 @@ height: 400px;
 
   .product-item {
     flex-direction: column;
-    
   }
 
   .product-image,
@@ -1431,23 +1462,6 @@ height: 400px;
     font-size: 0.7rem;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .media-container {
   padding: 20px;
@@ -1597,7 +1611,8 @@ height: 400px;
   gap: 10px;
   margin-bottom: 20px;
 }
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 300px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -1621,7 +1636,8 @@ height: 400px;
   .contact-container {
     flex-direction: column;
   }
-  .contact-details, .map-container {
+  .contact-details,
+  .map-container {
     width: 100%;
     padding: 10px;
   }
@@ -1633,7 +1649,8 @@ height: 400px;
     width: 100%;
     text-align: center;
   }
-  .form-input, .form-textarea {
+  .form-input,
+  .form-textarea {
     width: 100%;
   }
 }
@@ -1642,7 +1659,8 @@ height: 400px;
   .media-title {
     font-size: 28px;
   }
-  .breadcrumb-link, .breadcrumb-current {
+  .breadcrumb-link,
+  .breadcrumb-current {
     font-size: 16px;
   }
   .contact-title {
@@ -1659,18 +1677,16 @@ height: 400px;
   }
 }
 
-
-@media (max-width: 800px){
-  #oav_2tacard_responsive_id{
+@media (max-width: 800px) {
+  #oav_2tacard_responsive_id {
     flex-direction: column;
   }
-  #oav_2tacard_responsive_id1234{
+  #oav_2tacard_responsive_id1234 {
     width: 100%;
   }
 }
 
-
-#modal_oyna_form{
+#modal_oyna_form {
   background: rgba(0, 0, 0, 0.7);
   height: 100vh;
 }
@@ -1688,9 +1704,37 @@ height: 400px;
   background: none !important;
 }
 
-#nav_987654321234567890__a{
+#nav_987654321234567890__a {
   height: 40px;
 }
 
+/* .btn-arrow {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+}
 
+.btn-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+}
 
+.product-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+} */

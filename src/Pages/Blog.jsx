@@ -23,7 +23,7 @@ const Blog = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="text-center"
+        className="text-center "
       >
         <h1 className="text-4xl mt-8">Blog</h1>
         <div className="flex items-center text-center justify-center">
@@ -42,7 +42,7 @@ const Blog = () => {
       {selectedCategory === 1 && (
         <motion.div
           id="blog_card"
-          className=""
+          className="pl-15"
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -51,7 +51,7 @@ const Blog = () => {
           {homeItem2.slice(11, 23).map((item) => (
             <motion.div
               id="blog_card_ichi"
-              className="my-5 py-5 shadow-xl p-3 rounded-xl"
+              className="my-5 py-5 shadow-xl p-3  rounded-xl"
               key={item.id}
               whileHover={{ scale: 1.05 }}
             >

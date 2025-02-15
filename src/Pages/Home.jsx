@@ -1061,13 +1061,13 @@ export default function App() {
                 <div className="stat-card" key={index}>
                   <h1 className="stat-icon">
                     {index === 0 ? (
-                      <i className="fa-solid fa-gears"></i>
+                      <i id="index-icon-number" className="fa-solid fa-gears"></i>
                     ) : index === 1 ? (
                       <i className="fa-solid fa-hourglass-half"></i>
                     ) : index === 2 ? (
                       <i className="fa-solid fa-book"></i>
                     ) : (
-                      <i className="fa-solid fa-industry"></i>
+                      <i id="index-icon-number" className="fa-solid fa-industry"></i>
                     )}
                   </h1>
                   <div className="stat-info">
@@ -1093,7 +1093,7 @@ export default function App() {
             <div id="home_3ta_card_2_chisi" className="services-container">
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat1 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat1} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>
@@ -1102,7 +1102,7 @@ export default function App() {
               </div>
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat2 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat2} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>
@@ -1111,7 +1111,7 @@ export default function App() {
               </div>
               <div className="service-card">
                 <div className="service-image">
-                  <img src={Hizmat3 || "/placeholder.svg"} alt="" />
+                  <img src={Hizmat3} alt="" />
                 </div>
                 <div className="service-info">
                   <h2 className="service-title">Bizning Hizmatdan</h2>
