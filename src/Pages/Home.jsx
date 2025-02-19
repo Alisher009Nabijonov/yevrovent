@@ -67,8 +67,13 @@ import { homeItem21 } from "../Malumotlar21";
 import { homeItem22 } from "../Malumotlar22";
 import { homeItem23 } from "../Malumotlar23";
 import { homeItem24 } from "../Malumotlar24";
+import "swiper/css/pagination";
+import "swiper/css";
+// import { Pagination } from "swiper/modules";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 const counterValues = [65, 200, 122, 180];
+
 
 export default function App() {
   const [counts, setCounts] = useState([0, 0, 0, 0]);
@@ -132,25 +137,25 @@ export default function App() {
       img: HomeImg100,
       title: "Kompressor-kondensator bloki JVK",
       description:
-        "Kompressor va kondensator bloki (KKB) Markaziy konditsioner tizimlarida xladogentni bevosita bug'lash maqsadida foydalanish uchun mo'ljallangan. Asosiy komponentlar kompressor va kondensator bo'lib, tashqi bug'latgichdan foydalaniladi.",
+        "Kompressor va kondensator bloki (KKB) Markaziy konditsioner tizimlarida xladogentni bevosita bug'lash maqsadida foydalanish uchun. ",
     },
     {
       img: HomeImg300,
       title: "Kanalli ventilyator Ulitka",
       description:
-        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
+        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan. ",
     },
     {
       img: HomeImg400,
       title: "Another Product",
       description:
-        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
+        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali. ",
     },
     {
       img: HomeImg500,
       title: "Yet Another Product",
       description:
-        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali havoni isitish, ventilyasiyalash",
+        "Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV tipidagi issiqlik almashtirgichlarning isitish yelementi plastinka shaklida, alyuminiy qanotli mis trubadan yasalgan, turli xil konstruksiyali. ",
     },
   ];
 
@@ -177,6 +182,13 @@ export default function App() {
     visible: {
       y: 0,
       opacity: 1,
+    },
+  };
+
+  const pagination = {
+    clickable: true,
+    renderBullet: function(index, className) {
+      return '<span class="' + className + '">'  + "</span>";
     },
   };
 
@@ -494,11 +506,11 @@ export default function App() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="home_carusel_3talik_home_carusel_1a">
           <Swiper
-            navigation={true}
-            modules={[Navigation]}
-            className="home-swiper"
+            pagination={pagination}
+            modules={[Pagination]}
+            className="mySwiper"
           >
             <SwiperSlide>
               <div id="home_carusel" className="home-carousel">
@@ -522,7 +534,7 @@ export default function App() {
             <SwiperSlide>
               <div id="home_carusel" className="home-carousel">
                 <div className="carousel-content">
-                  <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+                  <h1 className="carousel-title">Kanalli ventilyator Ulitka Qurilma</h1>
                   <p className="carousel-description">
                     Elektr isitish qurilmasi ( issiqlik to'pi) omborxona, ishlab
                     chiqarish binolari va boshqalar
@@ -539,10 +551,10 @@ export default function App() {
             <SwiperSlide>
               <div id="home_carusel" className="home-carousel">
                 <div className="carousel-content">
-                  <h1 className="carousel-title">Kanalli ventilyator Ulitka</h1>
+                  <h1 className="carousel-title">Kanalli ventilyator Ulitka Qurilma</h1>
                   <p className="carousel-description">
                     Plastinkasimon mis-alyuminiydan ishlangan VNV va VOV
-                    tipidagi issiqlik
+                    tipidagi issiqlik ishalab chiqarish mumkin
                   </p>
                   <NavLink to="/swiper/3">
                     <button className="btn-details">Batafsil</button>
@@ -676,7 +688,7 @@ export default function App() {
                     </div>
                   ))}
                 </div> */}
-{/* 
+                {/* 
                 <div
                   className="carousel "
                   style={{
@@ -1061,13 +1073,19 @@ export default function App() {
                 <div className="stat-card" key={index}>
                   <h1 className="stat-icon">
                     {index === 0 ? (
-                      <i id="index-icon-number" className="fa-solid fa-gears"></i>
+                      <i
+                        id="index-icon-number"
+                        className="fa-solid fa-gears"
+                      ></i>
                     ) : index === 1 ? (
                       <i className="fa-solid fa-hourglass-half"></i>
                     ) : index === 2 ? (
                       <i className="fa-solid fa-book"></i>
                     ) : (
-                      <i id="index-icon-number" className="fa-solid fa-industry"></i>
+                      <i
+                        id="index-icon-number"
+                        className="fa-solid fa-industry"
+                      ></i>
                     )}
                   </h1>
                   <div className="stat-info">

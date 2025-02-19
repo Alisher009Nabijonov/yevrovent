@@ -61,7 +61,7 @@ body {
   width: 90%;
 }
 #salom {
-  width: 30%;
+  width: 40%;
   display: flex;
   gap: 10px;
 }
@@ -106,10 +106,13 @@ body {
 #toifa_card_cata {
   display: grid;
   grid-template-columns: repeat(3, 6fr);
+  margin-left: -5px;
 }
 #card1 {
   width: 90%;
+  height: auto;
   background-color: #fff;
+  border-radius: 6px;
 }
 #toifalat1 {
   background-color: rgb(221, 250, 250);
@@ -202,6 +205,13 @@ input[type="number"] {
   background-color: #fff;
 }
 @media (max-width: 900px) {
+  .company-info{
+    text-align: center;
+    width: 100%;
+  }
+  .product-item{
+    flex-direction: column;
+  }
   .carousel {
     width: 30%;
   }
@@ -214,6 +224,7 @@ input[type="number"] {
   }
   #biz_kata1 {
     flex-direction: column;
+    text-align: center;
   }
   #img_oraptur1 {
     width: 100%;
@@ -230,6 +241,7 @@ input[type="number"] {
   }
   #biz_kata {
     flex-direction: column-reverse;
+    text-align: center;
   }
   #img_oraptur {
     width: 100%;
@@ -256,6 +268,7 @@ input[type="number"] {
   #home_cata_img_text {
     width: 100%;
     flex-direction: column;
+    padding: 0;
   }
   #home_cata_img_text img {
     display: none;
@@ -296,6 +309,7 @@ input[type="number"] {
 
   #toifalat1 {
     flex-direction: column;
+    
   }
 }
 @media (max-width: 1100px) {
@@ -308,7 +322,7 @@ input[type="number"] {
     align-items: start;
     flex-direction: column;
   }
-  .tel_number_tel_string{
+  .tel_number_tel_string {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -391,7 +405,7 @@ input[type="number"] {
   justify-content: center;
 }
 #blog_card_ichi {
-  width: 88%;
+  width: 93%;
 }
 #blog_card img {
   width: 100%;
@@ -434,7 +448,8 @@ input[type="number"] {
   top: 0;
   left: 0;
   z-index: 1000;
-  color: #fff;
+  color: black;
+  background-color: white;
 }
 
 #fixed1 {
@@ -470,32 +485,49 @@ input[type="number"] {
   display: none;
 }
 #bars_text {
-  color: #fff !important;
+  color: black !important;
 }
+#footer_form_responsive_btn {
+  display: none;
+}
+.footer_form_site_btn1 {
+  display: flex;
+}
+#footer_input_btn_dav{
+  padding: 0 3px;
+  width: 100%;
+}
+
 @media (max-width: 550px) {
-  .yellow_card_form{
+  .footer_form_site_btn1 {
+    display: none;
+  }
+  .yellow_card_form {
     width: 100%;
   }
   #yellow_card_form {
     width: 100%;
-    background: none;
+    /* background: none; */
     display: flex;
   }
-#nav_blue_responsive_katalash{
-  margin-top: -10px;
-  padding: 2px 0;
-}
-
-  #mahsulot_holadi_va_search{
+  #nav_blue_responsive_katalash {
+    margin-top: -10px;
+    padding: 2px 0;
+  }
+  #footer_form_responsive_btn {
+    display: flex;
+  }
+  #mahsulot_holadi_va_search {
     flex-direction: column-reverse;
     display: flex;
     align-items: start;
     justify-content: center;
   }
-  #grid_list_link{
+ 
+  #grid_list_link {
     width: 100%;
   }
-  #toifa_search_btn_form{
+  #toifa_search_btn_form {
     width: 100%;
   }
   #nav_987654321234567890__a {
@@ -515,9 +547,9 @@ input[type="number"] {
   #home_pagination_page img {
     width: 85%;
   }
-  #footer_input_btn_dav {
+  /* #footer_input_btn_dav {
     flex-direction: column;
-  }
+  } */
   #footer_input_btn_dav button {
     width: 240px;
     border-radius: 4px;
@@ -532,15 +564,17 @@ input[type="number"] {
   }
 
   #home_carusel {
-    padding: 0;
+    /* padding: 0; */
   }
   #home_carusel h1 {
     font-size: 20px;
+    margin-top: 20px;
   }
   #home_carusel p {
     font-size: 16px;
   }
   #home_main {
+    margin-top: 10px;
   }
 }
 #status {
@@ -562,7 +596,6 @@ input[type="number"] {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    width: 65%;
   }
   #qqqqqq {
     flex-direction: column;
@@ -570,7 +603,11 @@ input[type="number"] {
   #toifa_card_cata_oraptur_div {
     padding: 0;
   }
+  #card1{
+    height: auto;
+  }
 }
+
 
 .hizmat {
   padding: 10px;
@@ -607,6 +644,7 @@ input[type="number"] {
   .hizmat {
     width: 90%;
     flex-direction: column;
+    text-align: center;
   }
   .hizmat_left {
     width: 100%;
@@ -620,6 +658,7 @@ input[type="number"] {
   }
 }
 @media (max-width: 450px) {
+
   #biz_kata1_left p {
     font-size: 9px;
   }
@@ -628,6 +667,9 @@ input[type="number"] {
   }
 }
 @media (max-width: 650px) {
+  .clients-section{
+    display: none;
+  }
   #aloqa iframe {
     width: 100%;
   }
@@ -704,13 +746,16 @@ input[type="number"] {
   align-items: center;
   padding: 50px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  margin-bottom: 0px;
 }
 
 .carousel-content {
   flex: 1;
   padding-right: 40px;
 }
-
+.home_carusel_3talik_home_carusel_1a{
+  margin-bottom: 40px;
+}
 .carousel-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -747,6 +792,7 @@ input[type="number"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 10px;
 }
 
 .btn-details:hover {
@@ -865,7 +911,7 @@ input[type="number"] {
 
 .company-text {
   flex: 1;
-  padding: 40px;
+  padding: 15px 5px;
 }
 
 .company-title {
@@ -1144,16 +1190,18 @@ input[type="number"] {
 }
 
 .product-item {
+  height: auto;
   flex: 0 0 calc(50% - 15px);
   display: flex;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
 }
 
 .product-image {
-  flex: 0 0 40%;
+  flex: 0 0 50%;
 }
 
 .product-image img {
@@ -1190,6 +1238,7 @@ input[type="number"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 30px;
 }
 
 .btn-view-category:hover {
@@ -1273,6 +1322,7 @@ input[type="number"] {
 @media screen and (max-width: 768px) {
   .carousel-title {
     font-size: 2rem;
+    margin: 15px 0;
   }
 
   .carousel-description {
@@ -1302,12 +1352,11 @@ input[type="number"] {
   }
 }
 @media (max-width: 767px) {
-  .toifalar1_card1 img{
+  .toifalar1_card1 img {
     width: 100px;
   }
-
- 
 }
+
 
 @media screen and (max-width: 576px) {
   .carousel {
@@ -1315,6 +1364,7 @@ input[type="number"] {
   }
   .carousel-title {
     font-size: 1.5rem;
+    margin: 12px 0;
   }
 
   .btn-details {
@@ -1464,7 +1514,7 @@ input[type="number"] {
 }
 
 .media-container {
-  padding: 20px;
+  padding: 20px 35px;
   font-family: Arial, sans-serif;
 }
 
@@ -1635,6 +1685,7 @@ input[type="number"] {
 @media (max-width: 768px) {
   .contact-container {
     flex-direction: column;
+    text-align: center;
   }
   .contact-details,
   .map-container {
@@ -1738,3 +1789,55 @@ input[type="number"] {
   width: 100%;
   overflow: hidden;
 } */
+
+#home_main {
+  padding: 0 35px;
+}
+.toifa_about_main {
+  padding: 0 35px;
+}
+.xizmatlar_pading_1 {
+  padding: 0 30px;
+}
+
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* #bars_text .active{
+  background-color: #fff;
+  color: black;
+  padding: 5px 6px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+} */
+
+
+
+
+
+
+
+
+

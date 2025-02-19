@@ -21,8 +21,16 @@ import "react-phone-input-2/lib/style.css";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
+import { FaTelegramPlane } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 
-const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
+const NavbarLayout = ({
+  t,
+  setSearchQuery,
+  selectedCards,
+  setLanguage,
+  language,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   // const [infoVisible, setInfoVisible] = useState(false);
 
@@ -132,6 +140,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
   let [bars1, setBars1] = useState(false);
 
   const toggleBars = () => {
+    setBars1(false);
     setBars(true);
   };
 
@@ -141,6 +150,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
 
   const toggleBars1 = () => {
     setBars1(true);
+    setBars(false);
   };
 
   const toggleBarsClose1 = () => {
@@ -475,31 +485,19 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
               </div>
               <div className="flex">
                 <NavLink to="/saqlanganlar" className="text-xl">
-                  Saqlanganlar
+                  <i class="fa-solid fa-bookmark cursor-pointer  ml-2  py-2 px-4 text-xl"></i>
                 </NavLink>
                 {/* <p>{selectedCards.length}</p> */}
               </div>
-              {/* <Dropdown className=" " autoClose="outside">
-                <Dropdown.Toggle
-                  variant="success"
-                  id="dropdown-basic"
-                  className="drop text-xl"
-                >
-                  Dropdown Button
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className="bg-red-800 flex flex-col align-middle p-3 z-999">
-                  <Dropdown.Item href="#/action-1">
-                    <button onClick={() => setLanguage("uz")}>Uzbekcha</button>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    <button onClick={() => setLanguage("ru")}>Ruski</button>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    <button onClick={() => setLanguage("en")}>English</button>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown> */}
+              {/* <select
+                    className="language_dropdown"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                  >
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                    <option value="uz">O'zbek</option>
+                  </select> */}
             </nav>
 
             <div className="flex items-center">
@@ -545,51 +543,116 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
 
             <div
               id="fixed"
-              className={`fixed top-0 left-0 h-full w-64 bg-blue-900 text-white transition-transform duration-300 ${
+              className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b  shadow-xl transition-transform duration-300 ease-in-out z-50 ${
                 bars ? "translate-x-0" : "-translate-x-full"
               }`}
             >
               <p
-                className="text-right p-4 cursor-pointer text-3xl"
+                className="text-right p-4 cursor-pointer text-3xl "
                 onClick={toggleBarsClose}
               >
-                x
+                ×
               </p>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/" onClick={toggleBarsClose}>
-                  Asosiy
-                </NavLink>
-              </h1>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/about" onClick={toggleBarsClose}>
-                  Toifalar
-                </NavLink>
-              </h1>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/biz" onClick={toggleBarsClose}>
-                  Biz Haqimizda
-                </NavLink>
-              </h1>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/oav" onClick={toggleBarsClose}>
-                  OAV
-                </NavLink>
-              </h1>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/aloqa" onClick={toggleBarsClose}>
-                  Aloqa
-                </NavLink>
-              </h1>
-              <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/blog" onClick={toggleBarsClose}>
-                  Blog
-                </NavLink>
+              {/* <h1 className="text-2xl font-semibold text-center py-4 border-b border-blue-800">
+                Menyu
+              </h1> */}
+              <div className="mt-4 space-y-2">
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    Asosiy
+                  </NavLink>
                 </h1>
-                <h1 id="bars_text" className="text-white text-xl px-5 py-2">
-                <NavLink to="/saqlanganlar" className="text-xl">
-                  Saqlanganlar
-                </NavLink>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/about"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    Toifalar
+                  </NavLink>
                 </h1>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/biz"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    Biz Haqimizda
+                  </NavLink>
+                </h1>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/oav"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    OAV
+                  </NavLink>
+                </h1>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/aloqa"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    Aloqa
+                  </NavLink>
+                </h1>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/blog"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    Blog
+                  </NavLink>
+                </h1>
+                <h1
+                  id="bars_text"
+                  className="text-xl pl-5 py-2 hover:bg-gray-300  transition-all"
+                >
+                  <NavLink
+                    to="/saqlanganlar"
+                    className="block w-full"
+                    onClick={toggleBarsClose}
+                  >
+                    <i class="fa-solid fa-bookmark cursor-pointer  ml-2 py-2  text-xl "></i>
+                  </NavLink>
+                </h1>
+                <div className="flex text-xl pl-5 py-2 gap-04">
+                  <div className="bg-neutral-300 rounded-full py-2 px-2">
+                    <FaInstagram />
+                  </div>
+                  <div className="bg-neutral-300 rounded-full py-2 px-2">
+                    <FaTelegramPlane />
+                  </div>
+                  <div className="bg-neutral-300 rounded-full py-2 px-2">
+                    <FaFacebookF />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -607,11 +670,11 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
           </div>
           <div
             id="yellow_card_form"
-            className="bg-yellow-400  px-8 rounded-full"
+            className="bg-yellow-400   px-8 rounded-full"
           >
             <form
               id="footer_input_btn_dav"
-              className="flex"
+              className="flex w-full"
               onSubmit={handleSubmit1}
             >
               <PhoneInput
@@ -622,7 +685,7 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                 inputStyle={{
                   borderRadius: "8px",
                   border: "2px solid black",
-                  width: "240px",
+                  width: "200px",
                   background: "none",
                   border: "none",
                 }}
@@ -634,9 +697,12 @@ const NavbarLayout = ({ t, setSearchQuery, selectedCards }) => {
                   borderRadius: "8px",
                 }}
               />
-              <button type="submit" className="text-2xl cursor-pointer">
+              <button type="submit" className=" text-1xl cursor-pointer">
                 <FiSend />
               </button>
+              {/* <button id="footer_form_responsive_btn" type="submit" className="text-2xl cursor-pointer">
+                Yuborish
+              </button> */}
             </form>
           </div>
           <div>

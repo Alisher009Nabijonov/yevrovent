@@ -77,7 +77,7 @@ const BizHaqimizda = () => {
           </motion.div>
           <motion.div
             id="biz_kata1_left"
-            className="w-560 my-20"
+            className="w-530 my-20"
             variants={itemVariants}
           >
             <motion.h1 className="text-2xl" variants={itemVariants}>
@@ -154,7 +154,7 @@ const BizHaqimizda = () => {
           >
             Xizmatlar
           </motion.h1>
-          <div className="services-section px-5">
+          <div className="services-section px-10">
             <div id="home_3ta_card_2_chisi" className="services-container">
               <div className="service-card">
                 <div className="service-image">

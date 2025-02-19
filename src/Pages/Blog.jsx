@@ -42,7 +42,7 @@ const Blog = () => {
       {selectedCategory === 1 && (
         <motion.div
           id="blog_card"
-          className="pl-15"
+          className="pl-8"
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -58,7 +58,7 @@ const Blog = () => {
               <NavLink to={`/info/${item.id}`}>
                 <img src={item.img} alt={item.title} />
               </NavLink>
-              <div className="bg-red-500 z-999 relative">
+              <div className="bg-red-500 z-9 relative">
                 <div
                   id="blog_sana"
                   className="bg-blue-500 text-amber-50 p-3 absolute bottom-0.5"
@@ -80,7 +80,7 @@ const Blog = () => {
       {selectedCategory === 2 && (
         <motion.div
           id="blog_card"
-          className="pl-15"
+          className="pl-8"
           initial="hidden"
           animate="visible"
           exit="exit"
