@@ -499,6 +499,9 @@ input[type="number"] {
 }
 
 @media (max-width: 550px) {
+  #btn_2_about_paginatioon{
+    display: none;
+  }
   .footer_form_site_btn1 {
     display: none;
   }
@@ -587,6 +590,9 @@ input[type="number"] {
   }
 }
 @media (max-width: 698px) {
+  #btn_1_about_paginatioon{
+    display: none;
+  }
   #toifa_card_cata {
     display: grid;
     grid-template-columns: repeat(1, 6fr);
@@ -1408,6 +1414,9 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 380px) {
+  #btn_3_about_paginatioon{
+    display: none;
+  }
   .carousel-title {
     font-size: 1.2rem;
   }

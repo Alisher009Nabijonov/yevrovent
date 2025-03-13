@@ -967,7 +967,7 @@ const About = ({ handleSelectCard }) => {
                   id="toifa_pagination_btn_son"
                   className="flex text-center w-full  pb-10 gap-5"
                 >
-                  <div id="qqqqqq" className="flex ">
+                  <div id="qqqqqq1" className="flex ">
                     <button
                       onClick={() => handleCategoryClick(selectedCategory - 1)}
                       disabled={selectedCategory === 2} // Birinchi sahifada "Prev" tugmasini o'chirib qo'yamiz
@@ -980,6 +980,7 @@ const About = ({ handleSelectCard }) => {
                       <FaArrowLeft />
                     </button>
                     <h1
+                    id="btn_3_about_paginatioon"
                       onClick={() => handleCategoryClick(2)}
                       className={`cursor-pointer text-sm  border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 2
@@ -990,6 +991,7 @@ const About = ({ handleSelectCard }) => {
                       1
                     </h1>
                     <h1
+                    id="btn_3_about_paginatioon"
                       onClick={() => handleCategoryClick(3)}
                       className={`cursor-pointer text-sm  border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 3
@@ -1000,8 +1002,9 @@ const About = ({ handleSelectCard }) => {
                       2
                     </h1>
                   </div>
-                  <div id="qqqqqq" className="flex">
+                  <div id="qqqqqq1" className="flex">
                     <h1
+                    id="btn_2_about_paginatioon"
                       onClick={() => handleCategoryClick(4)}
                       className={`cursor-pointer textsml border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 4
@@ -1012,6 +1015,7 @@ const About = ({ handleSelectCard }) => {
                       3
                     </h1>
                     <h1
+                    id="btn_2_about_paginatioon"
                       onClick={() => handleCategoryClick(5)}
                       className={`cursor-pointer textsml border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 5
@@ -1022,8 +1026,9 @@ const About = ({ handleSelectCard }) => {
                       4
                     </h1>
                   </div>
-                  <div id="qqqqqq" className="flex">
+                  <div id="qqqqqq1" className="flex">
                     <h1
+                    id="btn_1_about_paginatioon"
                       onClick={() => handleCategoryClick(6)}
                       className={`cursor-pointer textsml border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 6
@@ -1034,6 +1039,7 @@ const About = ({ handleSelectCard }) => {
                       5
                     </h1>
                     <h1
+                    id="btn_1_about_paginatioon"
                       onClick={() => handleCategoryClick(7)}
                       className={`cursor-pointer textsml border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 7
@@ -1044,7 +1050,7 @@ const About = ({ handleSelectCard }) => {
                       6
                     </h1>
                   </div>
-                  <div id="qqqqqq" className="flex">
+                  <div id="qqqqqq1" className="flex">
                     <button
                       onClick={() => handleCategoryClick(selectedCategory + 1)}
                       disabled={selectedCategory === 9} // Oxirgi sahifada "Next" tugmasini o'chirib qo'yamiz
