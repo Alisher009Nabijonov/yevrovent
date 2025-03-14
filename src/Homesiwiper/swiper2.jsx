@@ -10,6 +10,7 @@ const swiper2 = () => {
     <div className='container mx-auto'>
       <div className='flex px-10'>
         <NavLink to='/'>
+        
           <h1 id='info_h1' className='text-2xl flex items-center '><FaChevronLeft className='text-orange-400' />Home</h1>
         </NavLink>
         <NavLink to='/about'>

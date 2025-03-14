@@ -981,6 +981,7 @@ const About = ({ handleSelectCard }) => {
                     </button>
                     <h1
                     id="btn_3_about_paginatioon"
+                    
                       onClick={() => handleCategoryClick(2)}
                       className={`cursor-pointer text-sm  border-2 rounded-full border-black p-3 px-5 mr-3   ${
                         selectedCategory === 2

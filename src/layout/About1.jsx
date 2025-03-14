@@ -45,6 +45,7 @@ const About = ({ handleSelectCard }) => {
           <h1 className="text-4xl mt-8">Mahsulotlar Katalogi</h1>
           <div className="flex items-center text-center justify-center">
             <NavLink to="/">
+            
               <h1
                 id="info_h1"
                 className="text-2xl flex items-center text-center underline hover:text-orange-400 transition-all-0.5s"
